@@ -1,4 +1,4 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>وش أطبخ؟</title>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;--sb:env(safe-area-inset-bottom,0px)}html.vpshort{--sb:0px}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>وش أطبخ؟</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1F6B4A">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -44,8 +44,6 @@ html{direction:rtl}
   --r-lg: 22px;
   --r-md: 16px;
   --r-sm: 12px;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -81,7 +79,7 @@ h1, h2, h3 { text-wrap: balance; }
 
 #app { height: 100%; max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; position: relative; background: var(--bg); }
 .screen { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; gap: 16px;
-  padding-block: 22px 28px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+  padding-block: calc(22px + env(safe-area-inset-top, 0px)) 28px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
 
 /* ===== الرأس ===== */
 .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
@@ -189,8 +187,9 @@ h1, h2, h3 { text-wrap: balance; }
 .add-line .search { flex: 1; color: var(--accent-text); }
 
 /* ===== التبويبات ===== */
-.nav { flex-shrink: 0; height: 74px; background: var(--surface); border-top: 1px solid var(--line); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 6px;
+.nav { flex-shrink: 0; height: calc(74px + var(--sb)); background: var(--surface); border-top: 1px solid var(--line); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 6px; padding-bottom: var(--sb); position: relative;
   padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+html { background: var(--surface); }
 .nav button { min-width: 68px; min-height: 54px; border: none; background: none; color: var(--muted); font-size: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative; }
 .nav button[aria-current="page"] { color: var(--accent-text); font-weight: 600; }
 .nav .cnt { position: absolute; top: 2px; left: 14px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--saffron); color: var(--saffron-ink); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
@@ -2241,5 +2240,10 @@ var Logic = (function () {
 
 <script>
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+</script>
+<script>
+/* يعالج خلل آيفون: أحياناً تنتهي الشاشة فوق خط الرجوع للرئيسية، فيرتفع الشريط السفلي */
+(function(){function f(){var r=document.documentElement,a=document.activeElement,typing=a&&a.matches&&a.matches('input,textarea,select'),p=innerHeight>innerWidth,s=Math.max(screen.width,screen.height);if(typing)return;r.classList.toggle('vpshort',p&&innerHeight<s-2)}
+addEventListener('resize',f);addEventListener('orientationchange',function(){setTimeout(f,300)});addEventListener('pageshow',f);document.addEventListener('visibilitychange',function(){setTimeout(f,150)});f();setTimeout(f,400)})();
 </script>
 </body></html>
