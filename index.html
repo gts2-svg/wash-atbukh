@@ -1,0 +1,2244 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>وش أطبخ؟</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1F6B4A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="وش أطبخ؟">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+</head><body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&display=swap">
+<style>
+html{direction:rtl}
+/* Layout: one-column phone app, scrolling screen above a fixed tab bar; overlays slide over it. */
+:root {
+  --bg: #F4F6F3;
+  --surface: #FFFFFF;
+  --surface-2: #E8EDE9;
+  --ink: #16201A;
+  --muted: #56615A;
+  --line: #E1E7E2;
+  --accent: #1F6B4A;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCEBE1;
+  --accent-text: #1A5C3F;
+  --warn-bg: #FBE3D2;
+  --warn-ink: #7E3208;
+  --low-bg: #FFF1DA;
+  --low-ink: #5C3D06;
+  --saffron: #F2B544;
+  --saffron-ink: #2A1B00;
+  --shadow: rgba(22, 32, 26, 0.08);
+  --backdrop: rgba(10, 18, 13, 0.42);
+  --t-saudi: #DCEBE1; --t-saudi-ink: #1F6B4A;
+  --t-shaabi: #F6E1D3; --t-shaabi-ink: #8A3B0C;
+  --t-arab: #ECE6D6; --t-arab-ink: #6B5A2E;
+  --t-intl: #E2E6F1; --t-intl-ink: #3A4472;
+  --cook-bg: #0F2A1F;
+  --cook-surface: #1B3D2F;
+  --cook-ink: #F2F6F3;
+  --cook-muted: #A9C2B5;
+  --cook-track: #2C4A3B;
+  --font: 'Readex Pro', 'SF Arabic', 'Geeza Pro', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --r-lg: 22px;
+  --r-md: 16px;
+  --r-sm: 12px;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1512; --surface: #18201B; --surface-2: #232D27; --ink: #E8EEE9; --muted: #A2B0A7; --line: #2A352E;
+    --accent: #5CC08F; --accent-ink: #08160F; --accent-soft: #1E3A2C; --accent-text: #86D7AE;
+    --warn-bg: #3A2416; --warn-ink: #F4B58C; --low-bg: #382C12; --low-ink: #F2CF86;
+    --shadow: rgba(0, 0, 0, 0.35); --backdrop: rgba(0, 0, 0, 0.6);
+    --t-saudi: #1E3A2C; --t-saudi-ink: #86D7AE; --t-shaabi: #3A281C; --t-shaabi-ink: #F0B48C;
+    --t-arab: #2F2A1E; --t-arab-ink: #DCCB98; --t-intl: #1F2535; --t-intl-ink: #A9B5E6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1512; --surface: #18201B; --surface-2: #232D27; --ink: #E8EEE9; --muted: #A2B0A7; --line: #2A352E;
+  --accent: #5CC08F; --accent-ink: #08160F; --accent-soft: #1E3A2C; --accent-text: #86D7AE;
+  --warn-bg: #3A2416; --warn-ink: #F4B58C; --low-bg: #382C12; --low-ink: #F2CF86;
+  --shadow: rgba(0, 0, 0, 0.35); --backdrop: rgba(0, 0, 0, 0.6);
+  --t-saudi: #1E3A2C; --t-saudi-ink: #86D7AE; --t-shaabi: #3A281C; --t-shaabi-ink: #F0B48C;
+  --t-arab: #2F2A1E; --t-arab-ink: #DCCB98; --t-intl: #1F2535; --t-intl-ink: #A9B5E6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.55; overscroll-behavior: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+h1, h2, h3 { text-wrap: balance; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+#app { height: 100%; max-width: 540px; margin: 0 auto; display: flex; flex-direction: column; position: relative; background: var(--bg); }
+.screen { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; gap: 16px;
+  padding-block: 22px 28px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+
+/* ===== الرأس ===== */
+.top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.top > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.top h1 { margin: 0; font-size: 27px; font-weight: 700; line-height: 1.3; }
+.top p { margin: 0; font-size: 14px; color: var(--muted); }
+.iconbtn { width: 46px; height: 46px; flex-shrink: 0; border: none; border-radius: var(--r-md); background: var(--surface); color: var(--ink);
+  display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 1px 2px var(--shadow); }
+.btn { height: 46px; padding: 0 16px; border-radius: 14px; border: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 14.5px; font-weight: 600; flex-shrink: 0; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--line); font-weight: 500; }
+.btn-soft { background: var(--accent-soft); color: var(--accent-text); }
+.btn-danger { background: var(--warn-bg); color: var(--warn-ink); }
+.btn-block { width: 100%; height: 54px; border-radius: 18px; font-size: 16px; }
+.btn-sm { height: 36px; padding: 0 12px; font-size: 13px; border-radius: 12px; }
+.link { border: none; background: none; color: var(--accent-text); font-weight: 600; font-size: 13.5px; padding: 6px 4px; min-height: 36px; }
+
+.search { display: flex; align-items: center; gap: 10px; height: 48px; flex-shrink: 0; padding: 0 16px; background: var(--surface); border-radius: var(--r-md); color: var(--muted); box-shadow: 0 1px 2px var(--shadow); }
+.search input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-size: 15px; color: var(--ink); }
+.search input::placeholder { color: var(--muted); }
+
+.chips-row { display: flex; gap: 8px; overflow-x: auto; flex-shrink: 0; scrollbar-width: none; margin-inline: -18px; padding-inline: 18px; }
+.chips-row::-webkit-scrollbar { display: none; }
+.chip { height: 38px; flex-shrink: 0; padding: 0 14px; border-radius: var(--r-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 14px; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.chip.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 500; }
+.chip .badge { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--saffron); color: var(--saffron-ink); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+
+.seg { display: flex; gap: 4px; padding: 4px; background: var(--surface-2); border-radius: 14px; flex-shrink: 0; }
+.seg button { flex: 1; height: 38px; border: none; border-radius: 11px; background: transparent; color: var(--muted); font-size: 13.5px; white-space: nowrap; }
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 600; box-shadow: 0 1px 2px var(--shadow); }
+
+.sec-h { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-top: 4px; }
+.sec-h h2 { margin: 0; font-size: 18px; font-weight: 600; }
+.sec-h span { font-size: 13px; color: var(--muted); }
+.list { display: flex; flex-direction: column; gap: 10px; }
+
+/* ===== بطاقات الوصفات ===== */
+.tile { flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: var(--t-saudi); color: var(--t-saudi-ink); }
+.tile.shaabi { background: var(--t-shaabi); color: var(--t-shaabi-ink); }
+.tile.arab { background: var(--t-arab); color: var(--t-arab-ink); }
+.tile.intl { background: var(--t-intl); color: var(--t-intl-ink); }
+.feat { display: flex; flex-direction: column; background: var(--surface); border-radius: var(--r-lg); overflow: hidden; box-shadow: 0 1px 3px var(--shadow); border: none; padding: 0; text-align: right; width: 100%; }
+.feat .tile { height: 116px; position: relative; font-size: 34px; font-weight: 700; }
+.feat .tile .pill { position: absolute; top: 12px; right: 12px; }
+.feat .body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
+.feat .name { font-size: 18px; font-weight: 600; }
+.row { display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--surface); border-radius: 18px; box-shadow: 0 1px 2px var(--shadow); width: 100%; text-align: right; border: none; }
+.row .tile { width: 52px; height: 52px; border-radius: 14px; font-size: 20px; font-weight: 700; }
+.row .main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.row .name { font-size: 15.5px; font-weight: 600; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 12.5px; color: var(--muted); }
+.meta span { display: inline-flex; align-items: center; gap: 4px; }
+.miss { font-size: 12.5px; color: var(--warn-ink); display: flex; align-items: center; gap: 6px; }
+.miss::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.pill { height: 26px; padding: 0 10px; border-radius: 9px; background: var(--surface); color: var(--accent-text); font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.pill.soft { background: var(--accent-soft); }
+.pill.low { background: var(--low-bg); color: var(--low-ink); }
+.pill.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.pill.gray { background: var(--surface-2); color: var(--muted); font-weight: 500; }
+.okdot { width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center; justify-content: center; }
+
+.banner { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: none; background: var(--low-bg); border-radius: var(--r-md); color: var(--low-ink); text-align: right; width: 100%; flex-shrink: 0; }
+.banner .ico { width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: var(--saffron); color: var(--saffron-ink); display: flex; align-items: center; justify-content: center; }
+.banner .txt { flex: 1; display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.banner b { font-size: 14px; font-weight: 600; }
+.banner small { font-size: 12.5px; }
+.banner.on { outline: 2px solid var(--saffron); }
+
+.empty { padding: 22px 18px; border-radius: var(--r-lg); border: 1.5px dashed var(--line); text-align: center; color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.empty b { color: var(--ink); font-size: 16px; }
+.note { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 14px; border: 1px dashed var(--line); color: var(--muted); font-size: 13px; }
+.note span { flex: 1; }
+.tip { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px; background: var(--accent-soft); color: var(--accent-text); font-size: 13px; line-height: 1.6; }
+.demo { padding: 10px 14px; border-radius: 14px; background: var(--low-bg); color: var(--low-ink); font-size: 13px; display: flex; align-items: center; gap: 10px; }
+.demo span { flex: 1; }
+
+/* ===== المطبخ ===== */
+.group { display: flex; flex-direction: column; gap: 12px; padding: 14px 16px 16px; background: var(--surface); border-radius: 20px; box-shadow: 0 1px 2px var(--shadow); }
+.group-h { display: flex; justify-content: space-between; align-items: baseline; }
+.group-h h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.group-h span { font-size: 12.5px; color: var(--muted); }
+.wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+.ing { min-height: 38px; padding: 0 12px; border: none; border-radius: var(--r-sm); background: var(--surface-2); color: var(--ink); font-size: 14px; display: inline-flex; align-items: center; gap: 6px; }
+.ing small { font-size: 12px; }
+.ing.low { background: var(--low-bg); color: var(--low-ink); }
+.ing.warn { background: var(--warn-bg); color: var(--warn-ink); }
+.ing.dot::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.75; }
+.ing.pick { background: var(--surface); border: 1px solid var(--line); }
+.ing.pick.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* ===== المشتريات ===== */
+.shop-h { margin: 0 4px 2px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.box { display: flex; flex-direction: column; background: var(--surface); border-radius: 20px; overflow: hidden; box-shadow: 0 1px 2px var(--shadow); }
+.check { display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px; border-bottom: 1px solid var(--line); cursor: pointer; }
+.check:last-child { border-bottom: none; }
+.check input { position: absolute; opacity: 0; pointer-events: none; }
+.check .box-ui { width: 24px; height: 24px; flex-shrink: 0; border-radius: 8px; border: 2px solid var(--line); display: inline-flex; align-items: center; justify-content: center; color: transparent; }
+.check input:checked + .box-ui { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.check input:focus-visible + .box-ui { outline: 2px solid var(--accent); outline-offset: 2px; }
+.check .nm { flex: 1; min-width: 0; font-size: 15.5px; }
+.check .from { font-size: 12.5px; color: var(--muted); text-align: left; }
+.check.done .nm { color: var(--muted); text-decoration: line-through; }
+.check .gone { font-size: 12px; color: var(--accent-text); display: inline-flex; align-items: center; gap: 4px; }
+.add-line { display: flex; gap: 8px; }
+.add-line .search { flex: 1; color: var(--accent-text); }
+
+/* ===== التبويبات ===== */
+.nav { flex-shrink: 0; height: 74px; background: var(--surface); border-top: 1px solid var(--line); display: flex; justify-content: space-around; align-items: flex-start; padding-top: 6px;
+  padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px); }
+.nav button { min-width: 68px; min-height: 54px; border: none; background: none; color: var(--muted); font-size: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative; }
+.nav button[aria-current="page"] { color: var(--accent-text); font-weight: 600; }
+.nav .cnt { position: absolute; top: 2px; left: 14px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--saffron); color: var(--saffron-ink); font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* ===== صفحات فوق التطبيق ===== */
+.page { position: fixed; inset: 0; z-index: 20; background: var(--bg); display: flex; justify-content: center; animation: up 0.22s ease-out; }
+.page-in { width: 100%; max-width: 540px; height: 100%; display: flex; flex-direction: column; background: var(--surface); position: relative;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+@keyframes up { from { transform: translateY(14px); opacity: 0.6; } to { transform: none; opacity: 1; } }
+.hero { height: 190px; flex-shrink: 0; position: relative; font-size: 54px; font-weight: 700; }
+.hero .iconbtn { position: absolute; top: 16px; }
+.hero .back { right: max(16px, env(safe-area-inset-right, 0px)); }
+.hero .fav { left: max(16px, env(safe-area-inset-left, 0px)); }
+.fav[aria-pressed="true"] { color: #C2412B; }
+.sheet-body { flex: 1; min-height: 0; overflow-y: auto; margin-top: -26px; position: relative; background: var(--surface); border-radius: 26px 26px 0 0;
+  padding-block: 22px 24px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 16px; }
+.title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.title-row h1 { margin: 0; font-size: 25px; font-weight: 700; line-height: 1.35; }
+.persons { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--bg); border-radius: 18px; }
+.persons .txt { flex: 1; display: flex; flex-direction: column; }
+.persons b { font-size: 14.5px; font-weight: 600; }
+.persons small { font-size: 12px; color: var(--muted); }
+.stepper { display: flex; align-items: center; gap: 10px; }
+.stepper button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; }
+.stepper button.plus { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.stepper output { min-width: 24px; text-align: center; font-size: 20px; font-weight: 700; }
+.ing-list { list-style: none; margin: 0; padding: 0; }
+.ing-list li { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.ing-list li:last-child { border-bottom: none; }
+.ing-list .nm { flex: 1; min-width: 0; font-size: 15px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ing-list .q { font-size: 14px; color: var(--muted); }
+.st { width: 26px; height: 26px; flex-shrink: 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.st.ok { background: var(--accent-soft); color: var(--accent-text); }
+.st.no { border: 1.5px dashed var(--warn-ink); color: var(--warn-ink); }
+.st.opt { border: 1.5px dashed var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; counter-reset: s; }
+.steps li { display: flex; gap: 12px; align-items: flex-start; counter-increment: s; }
+.steps li::before { content: counter(s); width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: var(--surface-2); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.steps p { margin: 0; flex: 1; }
+.steps small { color: var(--muted); display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+.cta { flex-shrink: 0; padding-block: 12px 14px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); border-top: 1px solid var(--line); background: var(--surface); display: flex; gap: 10px; }
+.cta .btn-block { flex: 1; }
+.plain-h { display: flex; align-items: center; gap: 12px; padding-block: 14px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); border-bottom: 1px solid var(--line); flex-shrink: 0; }
+.plain-h h1 { margin: 0; font-size: 19px; font-weight: 600; flex: 1; }
+.plain-h .iconbtn { box-shadow: none; background: var(--bg); width: 42px; height: 42px; }
+.form { display: flex; flex-direction: column; gap: 18px; }
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field > label, .field > .lbl { font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.input { height: 48px; padding: 0 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font-size: 15px; width: 100%; min-width: 0; }
+textarea.input { height: auto; min-height: 70px; padding: 10px 14px; resize: vertical; line-height: 1.6; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ed-row { display: grid; grid-template-columns: minmax(0, 1fr) 64px 92px 40px; gap: 6px; align-items: center; }
+.ed-row .input { height: 44px; padding: 0 10px; font-size: 14px; }
+.ed-sub { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); margin-top: -2px; }
+.ed-step { display: grid; grid-template-columns: minmax(0, 1fr) 70px 40px; gap: 6px; align-items: start; }
+.x { width: 40px; height: 44px; border: none; border-radius: 12px; background: var(--bg); color: var(--muted); display: inline-flex; align-items: center; justify-content: center; }
+.set-sec { display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 20px; background: var(--bg); }
+.set-sec h2 { margin: 0; font-size: 15.5px; font-weight: 600; }
+.set-sec p { margin: 0; font-size: 13px; color: var(--muted); }
+.set-row { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+.switch { width: 52px; height: 32px; border-radius: 16px; border: none; background: var(--line); position: relative; flex-shrink: 0; }
+.switch::after { content: ""; position: absolute; top: 3px; right: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 2px var(--shadow); transition: right 0.15s; }
+.switch[aria-checked="true"] { background: var(--accent); }
+.switch[aria-checked="true"]::after { right: 23px; }
+
+/* ===== وضع الطبخ ===== */
+.cook { position: fixed; inset: 0; z-index: 30; background: var(--cook-bg); color: var(--cook-ink); display: flex; justify-content: center; }
+.cook-in { width: 100%; max-width: 540px; height: 100%; display: flex; flex-direction: column; gap: 16px;
+  padding-top: calc(16px + env(safe-area-inset-top, 0px)); padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); }
+.cook-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.cbtn { height: 44px; padding: 0 14px; border-radius: 14px; border: none; background: var(--cook-surface); color: var(--cook-ink); display: inline-flex; align-items: center; gap: 6px; font-size: 14px; }
+.cbtn[aria-pressed="true"] { background: var(--saffron); color: var(--saffron-ink); }
+.cook-top .ttl { font-size: 13.5px; color: var(--cook-muted); flex: 1; text-align: center; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.prog { display: flex; gap: 5px; }
+.prog span { flex: 1; height: 5px; border-radius: 3px; background: var(--cook-track); }
+.prog span.done { background: var(--saffron); }
+.prog span.cur { background: var(--cook-ink); }
+.cook-step { flex: 1; min-height: 0; overflow-y: auto; border: none; background: none; color: var(--cook-ink); text-align: right; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.cook-step .cnt { font-size: 13.5px; color: var(--cook-muted); }
+.cook-step p { margin: 0; font-size: 25px; font-weight: 500; line-height: 1.7; }
+.cook-step .hint { font-size: 12.5px; color: var(--cook-muted); }
+.cchips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cchips span { min-height: 34px; padding: 4px 12px; border-radius: 12px; background: var(--cook-surface); color: var(--cook-ink); font-size: 13.5px; display: inline-flex; align-items: center; }
+.timer { display: flex; flex-direction: column; align-items: center; gap: 14px; flex-shrink: 0; }
+.ring { position: relative; width: 184px; height: 184px; }
+.ring svg { display: block; }
+.ring .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.ring .t { font-size: 42px; font-weight: 600; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.ring .l { font-size: 12.5px; color: var(--cook-muted); }
+.timer.ding .ring { animation: ding 0.8s ease-in-out infinite; }
+@keyframes ding { 50% { transform: scale(1.05); } }
+.tctl { display: flex; align-items: center; gap: 16px; }
+.round { width: 52px; height: 52px; border-radius: 50%; border: none; background: var(--cook-surface); color: var(--cook-ink); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; }
+.round.big { width: 70px; height: 70px; background: var(--saffron); color: var(--saffron-ink); }
+.awake { font-size: 12.5px; color: var(--cook-muted); display: flex; align-items: center; justify-content: center; gap: 6px; text-align: center; }
+.cook-nav { display: flex; gap: 12px; flex-shrink: 0; }
+.cook-nav button { height: 58px; border-radius: 18px; border: none; font-size: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.cook-nav .prev { flex: 1; background: var(--cook-surface); color: var(--cook-ink); }
+.cook-nav .next { flex: 2; background: var(--cook-ink); color: var(--cook-bg); font-weight: 600; }
+.mini-timers { display: flex; flex-wrap: wrap; gap: 8px; }
+.mini-timers button { height: 34px; padding: 0 12px; border-radius: 12px; border: none; background: var(--cook-surface); color: var(--saffron); font-size: 13px; font-variant-numeric: tabular-nums; }
+
+/* ===== الورقة السفلية ===== */
+.backdrop { position: fixed; inset: 0; z-index: 40; background: var(--backdrop); display: flex; align-items: flex-end; justify-content: center; animation: fade 0.18s; }
+@keyframes fade { from { opacity: 0; } }
+.sheet { width: 100%; max-width: 540px; max-height: 88%; overflow-y: auto; background: var(--surface); color: var(--ink); border-radius: 26px 26px 0 0; display: flex; flex-direction: column; gap: 16px;
+  padding-top: 10px; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); animation: up 0.22s ease-out; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); align-self: center; }
+.sheet h2 { margin: 0; font-size: 19px; font-weight: 600; }
+.sheet .lbl { font-size: 13px; font-weight: 600; color: var(--muted); }
+.sheet .acts { display: flex; gap: 10px; }
+.sheet .acts .btn { flex: 1; height: 50px; }
+.res { display: flex; flex-direction: column; }
+.res button { min-height: 50px; display: flex; align-items: center; gap: 10px; border: none; background: none; border-bottom: 1px solid var(--line); text-align: right; padding: 6px 2px; font-size: 15px; }
+.res button span { flex: 1; }
+.res small { color: var(--muted); font-size: 12.5px; }
+.fin-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.fin-row .nm { flex: 1; min-width: 0; font-size: 15px; }
+.fin-row .seg { flex-shrink: 0; }
+.fin-row .seg button { height: 34px; padding: 0 10px; font-size: 12.5px; flex: none; }
+
+.toast { position: fixed; z-index: 60; left: 50%; transform: translateX(-50%); bottom: calc(92px + env(safe-area-inset-bottom, 0px)); max-width: calc(100% - 32px); width: max-content;
+  background: var(--ink); color: var(--bg); padding: 10px 14px; border-radius: 14px; font-size: 14px; display: flex; align-items: center; gap: 14px; box-shadow: 0 6px 20px var(--shadow); animation: fade 0.2s; }
+.toast button { border: none; background: none; color: var(--saffron); font-weight: 600; padding: 4px 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* ===== إضافات الواجهة ===== */
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.row-open { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; border: none; background: none; padding: 0; color: inherit; text-align: right; }
+.uses { font-size: 12.5px; color: var(--warn-ink); }
+.more { align-self: center; }
+.x.sm { width: 34px; height: 34px; background: transparent; }
+.form-body { flex: 1; min-height: 0; overflow-y: auto; padding-block: 18px 32px; padding-left: max(18px, env(safe-area-inset-left, 0px)); padding-right: max(18px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 16px; }
+.err { padding: 10px 14px; border-radius: 14px; background: var(--warn-bg); color: var(--warn-ink); font-size: 13.5px; }
+.res .sel { color: var(--accent-text); }
+.res h3 { margin: 10px 2px 2px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.mic[aria-pressed="true"] { background: var(--saffron); color: var(--saffron-ink); }
+.cook-step:focus-visible { outline: 2px solid var(--saffron); }
+.small { font-size: 12.5px; }
+.copybox { width: 100%; min-height: 140px; font-size: 12px; direction: ltr; text-align: left; }
+.tip button.x { background: transparent; color: inherit; width: 34px; height: 34px; }
+.tip span { flex: 1; }
+.ver { text-align: center; font-size: 12.5px; color: var(--muted); }
+.check .x { flex-shrink: 0; }
+</style>
+<div id="app" dir="rtl" lang="ar"></div>
+<script>
+/* وش أطبخ؟ — قاعدة المكونات والوصفات (الدفعة الأولى) */
+var DATA = (function () {
+  var CATS = [
+    { id: 'veg', name: 'خضار وفواكه وأعشاب' },
+    { id: 'meat', name: 'لحوم ودواجن وأسماك' },
+    { id: 'dairy', name: 'ألبان وبيض' },
+    { id: 'grain', name: 'رز وحبوب ومعكرونة' },
+    { id: 'bakery', name: 'دقيق وخبز' },
+    { id: 'spice', name: 'بهارات' },
+    { id: 'canned', name: 'معلبات وصلصات' },
+    { id: 'other', name: 'مكسرات وأخرى' }
+  ];
+
+  // id|الاسم|التصنيف|أيام الصلاحية بعد الشراء (0 = ما يخرب بسرعة)|مرادفات
+  var RAW = [
+    'tomato|طماطم|veg|7|بندورة',
+    'onion|بصل|veg|30|بصل أحمر,بصل أبيض',
+    'garlic|ثوم|veg|30|',
+    'potato|بطاطس|veg|30|بطاطا',
+    'zucchini|كوسة|veg|6|كوسا',
+    'eggplant|باذنجان|veg|6|بدنجان,بتنجان',
+    'carrot|جزر|veg|14|',
+    'bellpep|فلفل رومي|veg|8|فليفلة,فلفل بارد,فلفل ألوان',
+    'chili|فلفل حار|veg|10|فلفل أخضر حار,شطة خضراء',
+    'cucumber|خيار|veg|7|',
+    'lettuce|خس|veg|5|',
+    'lemon|ليمون|veg|20|ليمون أصفر,ليمونة',
+    'okra|بامية|veg|4|',
+    'spinach|سبانخ|veg|4|سبانخ',
+    'cauliflower|زهرة|veg|7|قرنبيط',
+    'mushroom|فطر|veg|5|مشروم',
+    'banana|موز|veg|5|',
+    'parsley|بقدونس|veg|5|بقدونس',
+    'coriander|كزبرة خضراء|veg|5|كزبرة',
+    'mint|نعناع|veg|5|نعنع',
+    'greenonion|بصل أخضر|veg|5|بصل اخضر',
+    'chicken|دجاج كامل|meat|2|دجاجة,فروج,دجاج',
+    'chickenbreast|صدور دجاج|meat|2|صدر دجاج,فيليه دجاج',
+    'lamb|لحم غنم|meat|3|لحم,لحم ضأن,لحم حاشي',
+    'mince|لحم مفروم|meat|2|مفروم,كيما',
+    'fish|سمك|meat|2|هامور,فيليه سمك,سمك فيليه',
+    'shrimp|روبيان|meat|2|جمبري',
+    'egg|بيض|dairy|21|بيضة',
+    'milk|حليب|dairy|5|حليب طازج',
+    'laban|لبن|dairy|5|لبن رائب',
+    'yogurt|زبادي|dairy|10|روب',
+    'butter|زبدة|dairy|30|',
+    'ghee|سمن|dairy|0|سمن بلدي,سمن غنم',
+    'cream|قشطة|dairy|7|كريمة,كريمة طبخ',
+    'whitecheese|جبنة بيضاء|dairy|14|جبن أبيض,جبنة بيضا',
+    'mozzarella|جبن موزاريلا|dairy|14|موزاريلا,موتزاريلا',
+    'cheddar|جبن شيدر|dairy|20|شيدر,جبن شرائح',
+    'labneh|لبنة|dairy|10|',
+    'rice|رز بسمتي|grain|0|رز,أرز,ارز',
+    'shortrice|رز مصري|grain|0|رز قصير,رز حبة قصيرة',
+    'jareesh|جريش|grain|0|',
+    'burghul|برغل|grain|0|',
+    'lentil|عدس أحمر|grain|0|عدس',
+    'pasta|معكرونة|grain|0|مكرونة,باستا,اسباغيتي',
+    'vermicelli|شعيرية|grain|0|',
+    'oats|شوفان|grain|0|',
+    'chickpea|حمص حب|canned|0|حمص,حمص معلب',
+    'foul|فول مدمس|canned|0|فول',
+    'flour|دقيق|bakery|0|طحين',
+    'bread|خبز|bakery|4|خبز عربي,خبز صامولي,خبز بر',
+    'yeast|خميرة|bakery|0|',
+    'kabsaspice|بهارات كبسة|spice|0|بهارات مشكلة,بهارات',
+    'cumin|كمون|spice|0|',
+    'cardamom|هيل|spice|0|حبهان',
+    'loomi|لومي|spice|0|ليمون أسود,لومي أسود',
+    'cinnamon|قرفة|spice|0|دارسين',
+    'turmeric|كركم|spice|0|',
+    'paprika|بابريكا|spice|0|فلفل أحمر حلو',
+    'curry|كاري|spice|0|بهارات كاري',
+    'corianderpow|كزبرة ناشفة|spice|0|كزبرة مطحونة',
+    'bayleaf|ورق غار|spice|0|ورق لورا,ورق الغار',
+    'cloves|قرنفل|spice|0|مسمار',
+    'saffron|زعفران|spice|0|',
+    'chilipow|شطة|spice|0|فلفل أحمر حار,شطة ناشفة',
+    'zaatar|زعتر|spice|0|',
+    'tomatopaste|معجون طماطم|canned|0|صلصة طماطم مركزة,صلصة',
+    'cannedtomato|طماطم معلبة|canned|0|طماطم مقشرة,طماطم مهروسة',
+    'tahini|طحينة|canned|0|طحينية',
+    'broth|مكعبات مرق|canned|0|ماجي,مكعب مرق,مرقة',
+    'tuna|تونة|canned|0|تونا',
+    'vinegar|خل|canned|0|',
+    'almond|لوز|other|0|',
+    'raisins|زبيب|other|0|',
+    'dates|تمر|other|0|',
+    'sugar|سكر|other|0|',
+    'honey|عسل|other|0|',
+    'salt|ملح|spice|0|',
+    'oil|زيت|canned|0|زيت زيتون,زيت نباتي',
+    'water|ماء|other|0|موية,مويه',
+    'blackpepper|فلفل أسود|spice|0|فلفل اسود'
+  ];
+
+  var INGS = {};
+  RAW.forEach(function (line) {
+    var p = line.split('|');
+    INGS[p[0]] = { id: p[0], name: p[1], cat: p[2], perish: +p[3] || 0, syn: p[4] ? p[4].split(',') : [] };
+  });
+
+  var BASICS = ['salt', 'oil', 'water', 'blackpepper'];
+
+  // R(المعرف، الاسم، المطبخ، الوجبات، الوقت بالدقائق، الصعوبة 1-3، عدد الأشخاص، المكونات، الخطوات)
+  // المكون: [المعرف، الكمية، الوحدة، 'o' = اختياري]
+  // الخطوة: [النص، الدقائق، مكونات الخطوة]
+  function R(id, name, cuisine, meals, time, diff, serves, ing, steps) {
+    return {
+      id: id, name: name, cuisine: cuisine, meals: meals, time: time, diff: diff, serves: serves, src: 'base',
+      ing: ing.map(function (x) { return { id: x[0], qty: x[1], unit: x[2] || null, opt: x[3] === 'o' }; }),
+      steps: steps.map(function (s) { return { t: s[0], min: s[1] || 0, ing: s[2] || [] }; })
+    };
+  }
+
+  var RECIPES = [
+    R('kabsa-chicken', 'كبسة دجاج', 'saudi', ['l'], 90, 2, 4,
+      [['chicken', 1, 'حبة'], ['rice', 3, 'كوب'], ['onion', 2, 'حبة'], ['tomato', 2, 'حبة'], ['tomatopaste', 1, 'م.ك'], ['garlic', 3, 'فص'],
+       ['kabsaspice', 2, 'م.ك'], ['loomi', 2, 'حبة'], ['cardamom', 4, 'حبة'], ['cinnamon', 1, 'عود'], ['bayleaf', 2, 'ورقة'],
+       ['chili', 1, 'حبة', 'o'], ['almond', 0.25, 'كوب', 'o'], ['raisins', 0.25, 'كوب', 'o']],
+      [['اغسل الرز وانقعه في ماء.', 20, ['rice']],
+       ['قطّع الدجاج أرباع، والبصل شرائح، والطماطم مكعبات.', 0, ['chicken', 'onion', 'tomato']],
+       ['حمّر البصل في الزيت لين يذبل، بعدها أضف الثوم والدجاج وقلّبه لين يتغير لونه.', 10, ['onion', 'garlic', 'chicken']],
+       ['أضف الطماطم ومعجون الطماطم والبهارات واللومي والهيل والقرفة وورق الغار، وقلّب.', 3, ['tomato', 'tomatopaste', 'kabsaspice', 'loomi', 'cardamom', 'cinnamon', 'bayleaf']],
+       ['أضف ماء يغطي الدجاج مع الملح والفلفل الحار، وخله يطبخ على نار متوسطة.', 35, ['chili']],
+       ['طلّع الدجاج وحمّره في الفرن. صفّ الرز في المرق بحيث يزيد المرق عن الرز بإصبع، وخله يغلي.', 5, ['rice']],
+       ['خفّف النار وغطِّ القدر لين يستوي الرز.', 25, []],
+       ['قدّم الرز وفوقه الدجاج، وزيّنه باللوز والزبيب.', 0, ['almond', 'raisins']]]),
+
+    R('kabsa-lamb', 'كبسة لحم', 'saudi', ['l'], 130, 2, 6,
+      [['lamb', 1.5, 'كجم'], ['rice', 4, 'كوب'], ['onion', 2, 'حبة'], ['tomato', 3, 'حبة'], ['tomatopaste', 1, 'م.ك'], ['garlic', 4, 'فص'],
+       ['kabsaspice', 2, 'م.ك'], ['loomi', 2, 'حبة'], ['cardamom', 5, 'حبة'], ['cinnamon', 1, 'عود'], ['cloves', 4, 'حبة'], ['bayleaf', 2, 'ورقة'],
+       ['almond', 0.25, 'كوب', 'o']],
+      [['اغسل الرز وانقعه في ماء.', 20, ['rice']],
+       ['حمّر البصل في الزيت، أضف الثوم واللحم وقلّبه لين يتغير لونه من كل الجهات.', 10, ['onion', 'garlic', 'lamb']],
+       ['أضف الطماطم والمعجون والبهارات واللومي والهيل والقرفة والقرنفل وورق الغار.', 3, ['tomato', 'tomatopaste', 'kabsaspice', 'loomi', 'cardamom', 'cinnamon', 'cloves', 'bayleaf']],
+       ['غطِّ اللحم بالماء مع الملح، وخله يطبخ على نار هادية لين يلين.', 80, []],
+       ['طلّع اللحم، وصفّ الرز في المرق بحيث يزيد المرق عن الرز بإصبع، وخله يغلي.', 5, ['rice']],
+       ['خفّف النار وغطِّ القدر لين يستوي الرز.', 25, []],
+       ['قدّم الرز وفوقه اللحم، وزيّنه باللوز المحمص.', 0, ['almond']]]),
+
+    R('shakshuka', 'شكشوكة', 'shaabi', ['b', 'd'], 15, 1, 4,
+      [['egg', 6, 'حبة'], ['tomato', 4, 'حبة'], ['onion', 1, 'حبة'], ['bellpep', 1, 'حبة', 'o'], ['garlic', 2, 'فص', 'o'],
+       ['cumin', 0.5, 'م.ص'], ['chilipow', null, 'رشة', 'o'], ['bread', 2, 'رغيف', 'o']],
+      [['حمّر البصل والفلفل الرومي في الزيت.', 4, ['onion', 'bellpep']],
+       ['أضف الطماطم والثوم والكمون والملح، وخلها تتسبك.', 6, ['tomato', 'garlic', 'cumin']],
+       ['اكسر البيض فوق الصلصة، وغطّه لين يستوي على كيفك.', 5, ['egg']],
+       ['رش الشطة وقدّمها مع الخبز.', 0, ['chilipow', 'bread']]]),
+
+    R('jareesh', 'جريش', 'saudi', ['l', 'd'], 90, 2, 4,
+      [['jareesh', 2, 'كوب'], ['laban', 2, 'كوب'], ['onion', 2, 'حبة'], ['garlic', 2, 'فص'], ['ghee', 2, 'م.ك'],
+       ['cumin', 1, 'م.ص'], ['loomi', 1, 'حبة', 'o'], ['chili', 1, 'حبة', 'o']],
+      [['اغسل الجريش وانقعه في ماء.', 30, ['jareesh']],
+       ['اسلقه في ماء مع الملح والكمون واللومي لين يلين، وحرّكه بين فترة وفترة.', 45, ['cumin', 'loomi']],
+       ['أضف اللبن وحرّك لين يتجانس ويثقل.', 10, ['laban']],
+       ['حمّر البصل والثوم والفلفل الحار في السمن لين يحمرّ، وصبّه فوق الجريش.', 8, ['onion', 'garlic', 'chili', 'ghee']]]),
+
+    R('saleeg', 'سليق', 'saudi', ['l'], 75, 2, 4,
+      [['chicken', 1, 'حبة'], ['shortrice', 2, 'كوب'], ['milk', 3, 'كوب'], ['butter', 2, 'م.ك'], ['onion', 1, 'حبة'],
+       ['cardamom', 4, 'حبة'], ['bayleaf', 2, 'ورقة']],
+      [['اسلق الدجاج في ماء مع البصل والهيل وورق الغار والملح.', 35, ['chicken', 'onion', 'cardamom', 'bayleaf']],
+       ['طلّع الدجاج وحمّره في الفرن، واحتفظ بالمرق.', 15, []],
+       ['اطبخ الرز في المرق مع التحريك لين يلين.', 20, ['shortrice']],
+       ['أضف الحليب والزبدة، وحرّك لين يصير قوامه كريمي، وقدّمه وفوقه الدجاج.', 10, ['milk', 'butter']]]),
+
+    R('margoog', 'مرقوق', 'saudi', ['l'], 105, 3, 6,
+      [['lamb', 1, 'كجم'], ['flour', 3, 'كوب'], ['zucchini', 2, 'حبة'], ['eggplant', 1, 'حبة'], ['carrot', 1, 'حبة'], ['potato', 2, 'حبة'],
+       ['tomato', 3, 'حبة'], ['onion', 2, 'حبة'], ['tomatopaste', 2, 'م.ك'], ['kabsaspice', 1, 'م.ك'], ['chili', 1, 'حبة', 'o']],
+      [['اعجن الدقيق مع الماء والملح لين يصير عجين لين، وغطّه يرتاح.', 20, ['flour']],
+       ['حمّر البصل مع اللحم، بعدها أضف الطماطم والمعجون والبهارات، وغطّه بالماء.', 10, ['onion', 'lamb', 'tomato', 'tomatopaste', 'kabsaspice']],
+       ['خلّ اللحم يطبخ لين يستوي.', 50, []],
+       ['أضف الخضار مقطعة قطع كبيرة.', 10, ['zucchini', 'eggplant', 'carrot', 'potato', 'chili']],
+       ['افرد العجين رقيق، قطّعه مربعات، وأضفه للمرق شوي شوي مع التحريك لين يستوي.', 15, []]]),
+
+    R('saloona', 'صالونة دجاج', 'saudi', ['l'], 50, 1, 4,
+      [['chicken', 1, 'حبة'], ['potato', 2, 'حبة'], ['carrot', 2, 'حبة'], ['zucchini', 2, 'حبة'], ['tomato', 3, 'حبة'], ['onion', 1, 'حبة'],
+       ['tomatopaste', 2, 'م.ك'], ['garlic', 3, 'فص'], ['kabsaspice', 1, 'م.ك']],
+      [['حمّر البصل والثوم، أضف الدجاج مقطع وقلّبه.', 8, ['onion', 'garlic', 'chicken']],
+       ['أضف الطماطم والمعجون والبهارات والملح، وقلّب.', 3, ['tomato', 'tomatopaste', 'kabsaspice']],
+       ['أضف الخضار مقطعة وماء يغطيها، وخلها تطبخ لين يستوي الدجاج والخضار.', 35, ['potato', 'carrot', 'zucchini']],
+       ['قدّمها مع الرز الأبيض.', 0, []]]),
+
+    R('masoob', 'معصوب', 'saudi', ['b'], 10, 1, 4,
+      [['bread', 3, 'رغيف'], ['banana', 3, 'حبة'], ['ghee', 2, 'م.ك'], ['honey', 3, 'م.ك'], ['cream', 0.5, 'كوب', 'o']],
+      [['قطّع الخبز صغير، واهرس الموز.', 3, ['bread', 'banana']],
+       ['اخلطهم مع السمن على نار هادية لين يتجانسون.', 5, ['ghee']],
+       ['قدّمه وفوقه العسل والقشطة.', 0, ['honey', 'cream']]]),
+
+    R('hunaini', 'حنيني', 'saudi', ['b'], 20, 1, 4,
+      [['dates', 2, 'كوب'], ['bread', 3, 'رغيف'], ['ghee', 3, 'م.ك'], ['cardamom', 0.5, 'م.ص'], ['saffron', null, 'رشة', 'o']],
+      [['اهرس التمر منزوع النوى مع شوي ماء على نار هادية.', 8, ['dates']],
+       ['افرك الخبز ناعم وأضفه للتمر.', 4, ['bread']],
+       ['أضف السمن والهيل والزعفران، وحرّك لين يتجانس.', 5, ['ghee', 'cardamom', 'saffron']]]),
+
+    R('logaimat', 'لقيمات', 'saudi', ['d'], 60, 2, 6,
+      [['flour', 2, 'كوب'], ['yeast', 1, 'م.ك'], ['sugar', 1, 'م.ك'], ['cardamom', 0.5, 'م.ص', 'o'], ['saffron', null, 'رشة', 'o'], ['honey', 0.5, 'كوب']],
+      [['اخلط الدقيق والخميرة والسكر والهيل مع ماء دافي لين يصير خليط لين متماسك.', 5, ['flour', 'yeast', 'sugar', 'cardamom', 'saffron']],
+       ['غطّه وخله يختمر لين يتضاعف حجمه.', 40, []],
+       ['سخّن الزيت، وكوّر العجين بيدك أو بملعقة واقلِه لين يحمرّ.', 15, []],
+       ['صفّه وصب عليه العسل أو الدبس.', 0, ['honey']]]),
+
+    R('foul', 'فول مدمس', 'shaabi', ['b'], 10, 1, 4,
+      [['foul', 1, 'علبة'], ['garlic', 2, 'فص'], ['lemon', 1, 'حبة'], ['cumin', 1, 'م.ص'], ['tomato', 1, 'حبة', 'o'],
+       ['onion', 1, 'حبة', 'o'], ['chili', 1, 'حبة', 'o'], ['tahini', 1, 'م.ك', 'o'], ['bread', 2, 'رغيف', 'o']],
+      [['سخّن الفول بمائه في قدر صغير.', 5, ['foul']],
+       ['اهرسه مع الثوم والكمون وعصير الليمون والملح والطحينة.', 2, ['garlic', 'cumin', 'lemon', 'tahini']],
+       ['زيّنه بالطماطم والبصل والفلفل والزيت، وقدّمه مع الخبز.', 0, ['tomato', 'onion', 'chili', 'bread']]]),
+
+    R('omelette', 'عجة بالبقدونس', 'shaabi', ['b', 'd'], 15, 1, 4,
+      [['egg', 6, 'حبة'], ['parsley', 0.5, 'ربطة'], ['onion', 1, 'حبة'], ['flour', 2, 'م.ك'], ['cumin', 0.5, 'م.ص', 'o']],
+      [['افرم البقدونس والبصل ناعم.', 4, ['parsley', 'onion']],
+       ['اخفق البيض مع الدقيق والملح والكمون، وأضف البقدونس والبصل.', 2, ['egg', 'flour', 'cumin']],
+       ['اقلِ الخليط في مقلاة فيها زيت على نار متوسطة من الجهتين.', 8, []]]),
+
+    R('lentil-soup', 'شوربة عدس', 'arab', ['l', 'd'], 35, 1, 4,
+      [['lentil', 1.5, 'كوب'], ['onion', 1, 'حبة'], ['carrot', 1, 'حبة'], ['potato', 1, 'حبة', 'o'], ['cumin', 1, 'م.ص'],
+       ['turmeric', 0.5, 'م.ص'], ['lemon', 1, 'حبة'], ['broth', 1, 'حبة', 'o']],
+      [['حمّر البصل والجزر والبطاطس مقطعة في الزيت.', 5, ['onion', 'carrot', 'potato']],
+       ['أضف العدس المغسول والكمون والكركم والمرق، وماء يغطيه بثلاث أصابع.', 0, ['lentil', 'cumin', 'turmeric', 'broth']],
+       ['خله يطبخ لين يذوب العدس.', 25, []],
+       ['اخلطه بالخلاط وعدّل الملح، وقدّمه مع الليمون.', 3, ['lemon']]]),
+
+    R('chicken-soup', 'شوربة دجاج بالشعيرية', 'arab', ['d'], 40, 1, 4,
+      [['chickenbreast', 400, 'جرام'], ['vermicelli', 0.5, 'كوب'], ['onion', 1, 'حبة'], ['carrot', 1, 'حبة'], ['cardamom', 2, 'حبة'],
+       ['lemon', 1, 'حبة', 'o'], ['coriander', 0.25, 'ربطة', 'o']],
+      [['اسلق الدجاج مع البصل والهيل والملح.', 20, ['chickenbreast', 'onion', 'cardamom']],
+       ['طلّع الدجاج وقطّعه، وأضف الجزر مبشور للمرق.', 5, ['carrot']],
+       ['حمّص الشعيرية بشوي زيت، وأضفها للمرق مع الدجاج لين تستوي.', 10, ['vermicelli']],
+       ['قدّمها مع الليمون والكزبرة.', 0, ['lemon', 'coriander']]]),
+
+    R('tabbouleh', 'تبولة', 'arab', ['l', 'd'], 20, 1, 4,
+      [['parsley', 3, 'ربطة'], ['burghul', 0.25, 'كوب'], ['tomato', 3, 'حبة'], ['onion', 1, 'حبة'], ['mint', 0.5, 'ربطة'], ['lemon', 2, 'حبة']],
+      [['انقع البرغل في ماء.', 10, ['burghul']],
+       ['افرم البقدونس والنعناع ناعم، وقطّع الطماطم والبصل صغير.', 10, ['parsley', 'mint', 'tomato', 'onion']],
+       ['اخلط الكل مع عصير الليمون والزيت والملح.', 0, ['lemon']]]),
+
+    R('fattoush', 'فتوش', 'arab', ['l', 'd'], 15, 1, 4,
+      [['lettuce', 1, 'حبة'], ['tomato', 2, 'حبة'], ['cucumber', 2, 'حبة'], ['bellpep', 1, 'حبة', 'o'], ['greenonion', 0.5, 'ربطة', 'o'],
+       ['parsley', 0.5, 'ربطة'], ['mint', 0.25, 'ربطة', 'o'], ['bread', 1, 'رغيف'], ['lemon', 1, 'حبة'], ['vinegar', 1, 'م.ك', 'o']],
+      [['حمّص الخبز مقطع مربعات في الفرن أو المقلاة.', 6, ['bread']],
+       ['قطّع الخضار والأعشاب.', 8, ['lettuce', 'tomato', 'cucumber', 'bellpep', 'greenonion', 'parsley', 'mint']],
+       ['اخلطها مع الليمون والخل والزيت والملح، وأضف الخبز آخر شي.', 0, ['lemon', 'vinegar']]]),
+
+    R('fatteh', 'فتة حمص', 'arab', ['b'], 20, 1, 4,
+      [['chickpea', 2, 'علبة'], ['yogurt', 2, 'كوب'], ['tahini', 3, 'م.ك'], ['garlic', 2, 'فص'], ['bread', 2, 'رغيف'],
+       ['lemon', 1, 'حبة'], ['ghee', 2, 'م.ك'], ['cumin', 0.5, 'م.ص'], ['almond', 0.25, 'كوب', 'o']],
+      [['حمّص الخبز مقطع مربعات.', 8, ['bread']],
+       ['سخّن الحمص بمائه.', 5, ['chickpea']],
+       ['اخلط الزبادي مع الطحينة والثوم والليمون والملح.', 2, ['yogurt', 'tahini', 'garlic', 'lemon']],
+       ['رتّب الخبز ثم الحمص ثم صوص الزبادي، وفوقه السمن الحار مع اللوز والكمون.', 3, ['ghee', 'almond', 'cumin']]]),
+
+    R('maqluba', 'مقلوبة', 'arab', ['l'], 90, 3, 6,
+      [['chicken', 1, 'حبة'], ['rice', 3, 'كوب'], ['eggplant', 2, 'حبة'], ['cauliflower', 1, 'حبة', 'o'], ['potato', 2, 'حبة'],
+       ['onion', 1, 'حبة'], ['kabsaspice', 1, 'م.ك'], ['turmeric', 0.5, 'م.ص'], ['cinnamon', 1, 'عود'], ['almond', 0.25, 'كوب', 'o']],
+      [['اسلق الدجاج مع البصل والقرفة والملح، واحتفظ بالمرق.', 35, ['chicken', 'onion', 'cinnamon']],
+       ['قطّع الباذنجان والبطاطس والزهرة واقلِها أو اشوها في الفرن.', 20, ['eggplant', 'potato', 'cauliflower']],
+       ['اغسل الرز واخلطه بالبهارات والكركم.', 0, ['rice', 'kabsaspice', 'turmeric']],
+       ['رتّب في القدر: الدجاج، ثم الخضار، ثم الرز، وصب المرق لين يغطيه بإصبع.', 0, []],
+       ['خله يغلي ثم خفّف النار وغطّه لين يستوي الرز.', 30, []],
+       ['اقلب القدر في صينية، وزيّنه باللوز.', 0, ['almond']]]),
+
+    R('biryani', 'برياني دجاج', 'intl', ['l'], 90, 3, 6,
+      [['chicken', 1, 'حبة'], ['rice', 3, 'كوب'], ['onion', 3, 'حبة'], ['yogurt', 1, 'كوب'], ['garlic', 4, 'فص'], ['tomato', 2, 'حبة'],
+       ['curry', 2, 'م.ك'], ['turmeric', 0.5, 'م.ص'], ['cardamom', 4, 'حبة'], ['saffron', null, 'رشة', 'o'], ['potato', 2, 'حبة', 'o']],
+      [['تبّل الدجاج بالزبادي والثوم والكاري والكركم والملح.', 20, ['chicken', 'yogurt', 'garlic', 'curry', 'turmeric']],
+       ['اقلِ البصل شرائح لين يصير ذهبي غامق.', 12, ['onion']],
+       ['اطبخ الدجاج مع الطماطم ونص البصل والبطاطس لين يستوي.', 25, ['tomato', 'potato']],
+       ['اسلق الرز مع الهيل والملح لين يستوي نص استواء، وصفّه.', 8, ['rice', 'cardamom']],
+       ['رتّب الرز فوق الدجاج، ورش البصل والزعفران، وغطّه على نار هادية.', 20, ['saffron']]]),
+
+    R('bamya', 'بامية باللحم', 'arab', ['l'], 75, 2, 4,
+      [['okra', 500, 'جرام'], ['lamb', 500, 'جرام'], ['onion', 1, 'حبة'], ['garlic', 4, 'فص'], ['tomato', 3, 'حبة'], ['tomatopaste', 2, 'م.ك'],
+       ['kabsaspice', 1, 'م.ص'], ['coriander', 0.5, 'ربطة', 'o'], ['lemon', 1, 'حبة', 'o']],
+      [['حمّر البصل واللحم، وغطّه بالماء وخله يطبخ لين يلين.', 45, ['onion', 'lamb']],
+       ['أضف الطماطم والمعجون والبهارات والملح.', 5, ['tomato', 'tomatopaste', 'kabsaspice']],
+       ['أضف البامية وخلها تطبخ لين تستوي.', 20, ['okra']],
+       ['حمّر الثوم مع الكزبرة وأضفه، وعصّر الليمون قبل التقديم.', 3, ['garlic', 'coriander', 'lemon']]]),
+
+    R('mahshi', 'محشي كوسة', 'arab', ['l'], 90, 3, 4,
+      [['zucchini', 8, 'حبة'], ['shortrice', 1, 'كوب'], ['mince', 300, 'جرام'], ['tomato', 3, 'حبة'], ['tomatopaste', 2, 'م.ك'],
+       ['garlic', 3, 'فص'], ['mint', 0.25, 'ربطة', 'o'], ['kabsaspice', 1, 'م.ص']],
+      [['افرغ الكوسة من الداخل.', 15, ['zucchini']],
+       ['اخلط الرز المغسول مع اللحم والبهارات والطماطم المفرومة والملح.', 5, ['shortrice', 'mince', 'kabsaspice', 'tomato']],
+       ['احشُ الكوسة ثلاث أرباعها، ورصّها في القدر.', 15, []],
+       ['ذوّب المعجون في ماء مع الثوم والنعناع وصبه فوقها لين يغطيها، وخلها تطبخ على نار هادية.', 50, ['tomatopaste', 'garlic', 'mint']]]),
+
+    R('musaqqa', 'مسقعة', 'arab', ['l', 'd'], 60, 2, 4,
+      [['eggplant', 3, 'حبة'], ['tomato', 3, 'حبة'], ['onion', 1, 'حبة'], ['garlic', 3, 'فص'], ['bellpep', 1, 'حبة'],
+       ['tomatopaste', 1, 'م.ك'], ['chili', 1, 'حبة', 'o']],
+      [['قطّع الباذنجان شرائح، واقلِه أو اشوه في الفرن لين يحمرّ.', 20, ['eggplant']],
+       ['حمّر البصل والثوم والفلفل، وأضف الطماطم والمعجون والملح لين تتسبك.', 12, ['onion', 'garlic', 'bellpep', 'tomato', 'tomatopaste', 'chili']],
+       ['رتّب الباذنجان في صينية وصب الصلصة فوقه، وأدخله الفرن.', 25, []]]),
+
+    R('kofta', 'كفتة بالطماطم', 'arab', ['l', 'd'], 50, 2, 4,
+      [['mince', 700, 'جرام'], ['onion', 1, 'حبة'], ['parsley', 0.5, 'ربطة'], ['potato', 3, 'حبة'], ['tomato', 3, 'حبة'],
+       ['tomatopaste', 2, 'م.ك'], ['kabsaspice', 1, 'م.ص']],
+      [['اخلط اللحم مع البصل والبقدونس المفروم والبهارات والملح.', 8, ['mince', 'onion', 'parsley', 'kabsaspice']],
+       ['شكّله أصابع ورصّه في صينية مع البطاطس شرائح.', 8, ['potato']],
+       ['اخلط الطماطم المهروسة مع المعجون والماء، وصبها فوقه.', 3, ['tomato', 'tomatopaste']],
+       ['اخبزه في فرن 200 درجة لين يستوي.', 30, []]]),
+
+    R('pasta-bechamel', 'معكرونة بالبشاميل', 'intl', ['l', 'd'], 60, 2, 6,
+      [['pasta', 500, 'جرام'], ['mince', 500, 'جرام'], ['onion', 1, 'حبة'], ['tomatopaste', 2, 'م.ك'], ['milk', 4, 'كوب'],
+       ['butter', 3, 'م.ك'], ['flour', 4, 'م.ك'], ['mozzarella', 1, 'كوب']],
+      [['اسلق المعكرونة في ماء وملح لين تستوي نص استواء، وصفّها.', 8, ['pasta']],
+       ['حمّر البصل، أضف اللحم المفروم وقلّب لين ينشف ماه، بعدها أضف المعجون والملح.', 12, ['onion', 'mince', 'tomatopaste']],
+       ['البشاميل: ذوّب الزبدة، أضف الدقيق وقلّب دقيقة، بعدها الحليب تدريجياً مع التحريك لين يثقل.', 8, ['butter', 'flour', 'milk']],
+       ['في صينية: طبقة معكرونة، ثم اللحم، ثم معكرونة، وصب البشاميل فوقها ورش الجبن.', 0, ['mozzarella']],
+       ['اخبزها في فرن 200 درجة لين يحمرّ وجهها.', 25, []]]),
+
+    R('pasta-red', 'معكرونة بالصلصة الحمراء', 'intl', ['l', 'd'], 25, 1, 4,
+      [['pasta', 500, 'جرام'], ['cannedtomato', 1, 'علبة'], ['garlic', 3, 'فص'], ['onion', 1, 'حبة'], ['tomatopaste', 1, 'م.ك'],
+       ['chilipow', null, 'رشة', 'o'], ['cheddar', 0.5, 'كوب', 'o']],
+      [['اسلق المعكرونة في ماء وملح لين تستوي.', 10, ['pasta']],
+       ['حمّر البصل والثوم، أضف الطماطم المعلبة والمعجون والملح والشطة وخلها تتسبك.', 12, ['onion', 'garlic', 'cannedtomato', 'tomatopaste', 'chilipow']],
+       ['اخلط المعكرونة بالصلصة، وقدّمها مع الجبن.', 0, ['cheddar']]]),
+
+    R('alfredo', 'معكرونة بالدجاج والكريمة', 'intl', ['d'], 30, 1, 4,
+      [['pasta', 500, 'جرام'], ['chickenbreast', 400, 'جرام'], ['cream', 1.5, 'كوب'], ['garlic', 3, 'فص'], ['butter', 1, 'م.ك'],
+       ['mushroom', 200, 'جرام', 'o'], ['mozzarella', 0.5, 'كوب', 'o']],
+      [['اسلق المعكرونة في ماء وملح لين تستوي.', 10, ['pasta']],
+       ['قطّع الدجاج شرائح وحمّره في الزبدة مع الثوم والفطر والملح.', 10, ['chickenbreast', 'butter', 'garlic', 'mushroom']],
+       ['أضف الكريمة والجبن وخلها تثقل شوي، بعدها اخلط المعكرونة.', 5, ['cream', 'mozzarella']]]),
+
+    R('chicken-curry', 'دجاج بالكاري', 'intl', ['l', 'd'], 40, 1, 4,
+      [['chickenbreast', 700, 'جرام'], ['onion', 1, 'حبة'], ['garlic', 3, 'فص'], ['curry', 2, 'م.ك'], ['cream', 1, 'كوب'], ['tomato', 1, 'حبة']],
+      [['حمّر البصل والثوم، أضف الدجاج مكعبات وقلّبه.', 8, ['onion', 'garlic', 'chickenbreast']],
+       ['أضف الكاري والطماطم والملح، وقلّب.', 3, ['curry', 'tomato']],
+       ['أضف الكريمة وشوي ماء، وخله يطبخ على نار هادية.', 20, ['cream']],
+       ['قدّمه مع الرز الأبيض.', 0, []]]),
+
+    R('roast-chicken', 'دجاج مشوي بالفرن', 'intl', ['l', 'd'], 75, 1, 4,
+      [['chicken', 1, 'حبة'], ['potato', 3, 'حبة'], ['onion', 1, 'حبة'], ['garlic', 4, 'فص'], ['lemon', 1, 'حبة'], ['paprika', 1, 'م.ص'],
+       ['cumin', 0.5, 'م.ص'], ['yogurt', 0.5, 'كوب', 'o']],
+      [['تبّل الدجاج بالثوم والليمون والبابريكا والكمون والملح والزيت والزبادي.', 15, ['chicken', 'garlic', 'lemon', 'paprika', 'cumin', 'yogurt']],
+       ['رصّه في صينية مع البطاطس والبصل قطع.', 5, ['potato', 'onion']],
+       ['اشوه في فرن 200 درجة لين يستوي ويحمرّ.', 55, []]]),
+
+    R('shawarma', 'شاورما دجاج منزلية', 'arab', ['d'], 45, 2, 4,
+      [['chickenbreast', 800, 'جرام'], ['yogurt', 0.5, 'كوب'], ['garlic', 4, 'فص'], ['lemon', 1, 'حبة'], ['paprika', 1, 'م.ص'],
+       ['cumin', 1, 'م.ص'], ['turmeric', 0.5, 'م.ص'], ['bread', 4, 'رغيف'], ['tahini', 3, 'م.ك', 'o'], ['tomato', 1, 'حبة', 'o']],
+      [['تبّل الدجاج شرائح بالزبادي والثوم والليمون والبهارات والملح.', 20, ['chickenbreast', 'yogurt', 'garlic', 'lemon', 'paprika', 'cumin', 'turmeric']],
+       ['اطبخه في مقلاة حارة أو الفرن لين يتحمّر.', 15, []],
+       ['لفّه في الخبز مع الطحينة والطماطم.', 5, ['bread', 'tahini', 'tomato']]]),
+
+    R('fried-fish', 'سمك مقلي', 'shaabi', ['l', 'd'], 30, 1, 4,
+      [['fish', 1, 'كجم'], ['flour', 0.5, 'كوب'], ['cumin', 1, 'م.ص'], ['turmeric', 0.5, 'م.ص'], ['garlic', 3, 'فص'], ['lemon', 2, 'حبة'],
+       ['chilipow', null, 'رشة', 'o']],
+      [['تبّل السمك بالثوم والكمون والكركم والليمون والملح والشطة.', 10, ['fish', 'garlic', 'cumin', 'turmeric', 'lemon', 'chilipow']],
+       ['غطّه بالدقيق.', 3, ['flour']],
+       ['اقلِه في زيت حار لين يحمرّ من الجهتين.', 12, []]]),
+
+    R('sayadieh', 'صيادية', 'arab', ['l'], 70, 2, 4,
+      [['fish', 1, 'كجم'], ['rice', 3, 'كوب'], ['onion', 3, 'حبة'], ['cumin', 1, 'م.ص'], ['cinnamon', 1, 'عود'], ['almond', 0.25, 'كوب', 'o']],
+      [['اقلِ البصل شرائح لين يصير بني غامق.', 15, ['onion']],
+       ['اقلِ السمك متبل بالملح والكمون.', 12, ['fish', 'cumin']],
+       ['اطبخ البصل مع ماء والقرفة لين يصير مرق بني، وصفّه.', 10, ['cinnamon']],
+       ['اطبخ الرز في المرق لين يستوي، وقدّمه وفوقه السمك واللوز.', 25, ['rice', 'almond']]]),
+
+    R('rice-vermicelli', 'رز بالشعيرية', 'arab', ['l'], 30, 1, 4,
+      [['rice', 2, 'كوب'], ['vermicelli', 0.5, 'كوب'], ['ghee', 1, 'م.ك']],
+      [['حمّص الشعيرية في السمن لين تصير ذهبية.', 3, ['vermicelli', 'ghee']],
+       ['أضف الرز المغسول وقلّبه، بعدها ماء يزيد عنه بإصبع مع الملح.', 2, ['rice']],
+       ['خله يغلي ثم خفّف النار وغطّه لين يستوي.', 20, []]]),
+
+    R('oven-potato', 'بطاطس بالفرن', 'intl', ['l', 'd'], 40, 1, 4,
+      [['potato', 5, 'حبة'], ['paprika', 1, 'م.ص'], ['garlic', 2, 'فص', 'o']],
+      [['قطّع البطاطس أصابع أو مكعبات.', 5, ['potato']],
+       ['اخلطها مع الزيت والبابريكا والثوم والملح.', 2, ['paprika', 'garlic']],
+       ['اشوها في فرن 220 درجة لين تحمرّ.', 30, []]]),
+
+    R('yogurt-cucumber', 'سلطة زبادي بالخيار', 'arab', ['l', 'd'], 5, 1, 4,
+      [['yogurt', 2, 'كوب'], ['cucumber', 2, 'حبة'], ['garlic', 1, 'فص'], ['mint', 0.25, 'ربطة', 'o']],
+      [['قطّع الخيار صغير واخلطه مع الزبادي والثوم المهروس والنعناع والملح.', 5, ['yogurt', 'cucumber', 'garlic', 'mint']]]),
+
+    R('tuna-salad', 'سلطة تونة', 'intl', ['d'], 10, 1, 4,
+      [['tuna', 2, 'علبة'], ['onion', 1, 'حبة'], ['tomato', 1, 'حبة'], ['cucumber', 1, 'حبة'], ['lemon', 1, 'حبة'], ['lettuce', 1, 'حبة', 'o']],
+      [['صفّ التونة، وقطّع الخضار صغير.', 7, ['tuna', 'onion', 'tomato', 'cucumber', 'lettuce']],
+       ['اخلط الكل مع الليمون والزيت والملح.', 0, ['lemon']]]),
+
+    R('manakish', 'مناقيش زعتر', 'arab', ['b'], 60, 2, 4,
+      [['flour', 3, 'كوب'], ['yeast', 1, 'م.ص'], ['sugar', 1, 'م.ص'], ['zaatar', 0.5, 'كوب'], ['labneh', 0.5, 'كوب', 'o']],
+      [['اعجن الدقيق مع الخميرة والسكر والملح والزيت والماء الدافي.', 8, ['flour', 'yeast', 'sugar']],
+       ['غطّه وخله يختمر.', 30, []],
+       ['افرده أقراص، وادهنه بالزعتر المخلوط بالزيت.', 8, ['zaatar']],
+       ['اخبزه في فرن حار جداً لين تحمرّ الأطراف، وقدّمه مع اللبنة.', 8, ['labneh']]]),
+
+    R('oats', 'شوفان بالحليب', 'intl', ['b'], 10, 1, 2,
+      [['oats', 1, 'كوب'], ['milk', 2, 'كوب'], ['honey', 2, 'م.ك'], ['banana', 1, 'حبة', 'o'], ['cinnamon', null, 'رشة', 'o']],
+      [['اطبخ الشوفان مع الحليب على نار هادية مع التحريك.', 6, ['oats', 'milk']],
+       ['قدّمه مع العسل والموز والقرفة.', 0, ['honey', 'banana', 'cinnamon']]]),
+
+    R('cheese-toast', 'توست جبن مشوي', 'intl', ['b', 'd'], 10, 1, 2,
+      [['bread', 4, 'شريحة'], ['cheddar', 4, 'شريحة'], ['butter', 1, 'م.ك'], ['tomato', 1, 'حبة', 'o']],
+      [['ادهن الخبز بالزبدة من برا، وحط بينهم الجبن والطماطم.', 3, ['bread', 'butter', 'cheddar', 'tomato']],
+       ['حمّره في مقلاة على نار هادية من الجهتين لين يذوب الجبن.', 6, []]]),
+
+    R('shrimp-rice', 'رز بالروبيان', 'saudi', ['l'], 60, 2, 4,
+      [['shrimp', 700, 'جرام'], ['rice', 3, 'كوب'], ['onion', 2, 'حبة'], ['tomato', 2, 'حبة'], ['garlic', 3, 'فص'],
+       ['kabsaspice', 1, 'م.ك'], ['turmeric', 0.5, 'م.ص'], ['loomi', 1, 'حبة'], ['coriander', 0.25, 'ربطة', 'o']],
+      [['اغسل الرز وانقعه.', 20, ['rice']],
+       ['حمّر البصل والثوم، أضف الطماطم والبهارات والكركم واللومي.', 8, ['onion', 'garlic', 'tomato', 'kabsaspice', 'turmeric', 'loomi']],
+       ['أضف الروبيان وقلّبه دقيقتين بس، وطلّعه.', 3, ['shrimp']],
+       ['أضف ماء والملح، وصفّ الرز وخله يستوي، بعدها رجّع الروبيان فوقه مع الكزبرة.', 25, ['coriander']]])
+  ];
+
+  var CUISINES = [
+    { id: 'saudi', name: 'سعودي' },
+    { id: 'shaabi', name: 'شعبي' },
+    { id: 'arab', name: 'عربي' },
+    { id: 'intl', name: 'عالمي' }
+  ];
+  var MEALS = [
+    { id: 'b', name: 'فطور' },
+    { id: 'l', name: 'غداء' },
+    { id: 'd', name: 'عشاء' }
+  ];
+  var DIFFS = ['', 'سهل', 'متوسط', 'صعب'];
+  var UNITS = ['حبة', 'كوب', 'م.ك', 'م.ص', 'جرام', 'كجم', 'فص', 'ربطة', 'علبة', 'رغيف', 'شريحة', 'عود', 'ورقة', 'رشة', 'حسب الرغبة'];
+
+  return { CATS: CATS, INGS: INGS, BASICS: BASICS, RECIPES: RECIPES, CUISINES: CUISINES, MEALS: MEALS, DIFFS: DIFFS, UNITS: UNITS };
+})();
+
+/* وش أطبخ؟ — المنطق (بدون واجهة) */
+var Logic = (function () {
+  var DAY = 86400000;
+  var COUNT_UNITS = ['حبة', 'فص', 'رغيف', 'شريحة', 'عود', 'ورقة', 'علبة'];
+  var FRACT_UNITS = ['كوب', 'م.ك', 'م.ص', 'ربطة'];
+  var FIXED_UNITS = ['رشة', 'حسب الرغبة'];
+
+  function uid() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  }
+
+  function norm(s) {
+    return String(s || '')
+      .replace(/[ً-ٰٟـ]/g, '')
+      .replace(/[أإآٱ]/g, 'ا')
+      .replace(/ة/g, 'ه')
+      .replace(/ى/g, 'ي')
+      .replace(/ؤ/g, 'و')
+      .replace(/ئ/g, 'ي')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+  function stripAl(s) {
+    return s.split(' ').map(function (w) { return w.length > 3 && w.indexOf('ال') === 0 ? w.slice(2) : w; }).join(' ');
+  }
+
+  function lev(a, b) {
+    if (a === b) return 0;
+    var m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    var prev = [], cur = [], i, j;
+    for (j = 0; j <= n; j++) prev[j] = j;
+    for (i = 1; i <= m; i++) {
+      cur = [i];
+      for (j = 1; j <= n; j++) {
+        cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      }
+      prev = cur;
+    }
+    return prev[n];
+  }
+
+  function newState() {
+    return {
+      v: 1,
+      onboarded: false,
+      pantry: {},
+      basics: DATA.BASICS.slice(),
+      customIngs: {},
+      shopping: [],
+      history: [],
+      favs: {},
+      myRecipes: [],
+      settings: { persons: 4, voice: false }
+    };
+  }
+
+  function fixState(s) {
+    var base = newState();
+    if (!s || typeof s !== 'object') return base;
+    Object.keys(base).forEach(function (k) { if (s[k] === undefined) s[k] = base[k]; });
+    if (!s.settings.persons) s.settings.persons = 4;
+    return s;
+  }
+
+  function ing(state, id) {
+    return DATA.INGS[id] || (state && state.customIngs[id]) || null;
+  }
+  function ingName(state, id) {
+    var x = ing(state, id);
+    return x ? x.name : id;
+  }
+  function allIngs(state) {
+    var out = [];
+    Object.keys(DATA.INGS).forEach(function (k) { out.push(DATA.INGS[k]); });
+    Object.keys(state.customIngs || {}).forEach(function (k) { out.push(state.customIngs[k]); });
+    return out;
+  }
+  function allRecipes(state) {
+    return DATA.RECIPES.concat(state.myRecipes || []);
+  }
+  function recipe(state, id) {
+    var all = allRecipes(state);
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
+    return null;
+  }
+
+  // البحث عن مكون بالاسم أو المرادف، مع اقتراحات "تقصد كذا؟"
+  function findIng(state, query) {
+    var q = stripAl(norm(query));
+    if (!q) return { exact: null, matches: [], fuzzy: [] };
+    var list = allIngs(state);
+    var exact = null, matches = [], fuzzy = [];
+    list.forEach(function (x) {
+      var names = [x.name].concat(x.syn || []).map(function (n) { return stripAl(norm(n)); });
+      if (names.indexOf(q) >= 0) { exact = exact || x; }
+      if (names.some(function (n) { return n.indexOf(q) >= 0 || (q.length >= 3 && q.indexOf(n) >= 0); })) matches.push(x);
+      else {
+        var best = Math.min.apply(null, names.map(function (n) { return lev(n, q); }));
+        var tol = q.length <= 3 ? 1 : 2;
+        if (best <= tol) fuzzy.push({ x: x, d: best });
+      }
+    });
+    fuzzy.sort(function (a, b) { return a.d - b.d; });
+    return { exact: exact, matches: matches.slice(0, 8), fuzzy: fuzzy.slice(0, 4).map(function (f) { return f.x; }) };
+  }
+
+  function addCustomIng(state, name, cat) {
+    var id = 'c_' + uid();
+    state.customIngs[id] = { id: id, name: String(name).trim(), cat: cat || 'other', perish: 0, syn: [], custom: true };
+    return state.customIngs[id];
+  }
+
+  // ===== المطبخ =====
+  function status(state, id) {
+    if (state.basics.indexOf(id) >= 0) return 'basic';
+    var p = state.pantry[id];
+    return p ? p.status : null;
+  }
+  function has(state, id) {
+    var s = status(state, id);
+    return s === 'basic' || s === 'have' || s === 'low';
+  }
+  function setPantry(state, id, st, now) {
+    now = now || Date.now();
+    var cur = state.pantry[id];
+    var x = ing(state, id);
+    if (!cur) {
+      cur = state.pantry[id] = { addedAt: now, expiresAt: null, status: 'have', updatedAt: now };
+      if (x && x.perish) cur.expiresAt = now + x.perish * DAY;
+    }
+    cur.status = st || 'have';
+    cur.updatedAt = now;
+    return cur;
+  }
+  function restock(state, id, now) {
+    now = now || Date.now();
+    delete state.pantry[id];
+    return setPantry(state, id, 'have', now);
+  }
+  function removePantry(state, id) {
+    delete state.pantry[id];
+  }
+  function setExpiry(state, id, days, now) {
+    now = now || Date.now();
+    var p = state.pantry[id];
+    if (!p) return;
+    p.expiresAt = days == null ? null : startOfDay(now) + days * DAY + DAY - 1;
+    p.updatedAt = now;
+  }
+  function startOfDay(ts) {
+    var d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime();
+  }
+  function daysLeft(state, id, now) {
+    var p = state.pantry[id];
+    if (!p || !p.expiresAt) return null;
+    return Math.floor((startOfDay(p.expiresAt) - startOfDay(now || Date.now())) / DAY);
+  }
+  function daysText(n) {
+    if (n == null) return '';
+    if (n < 0) return 'انتهى';
+    if (n === 0) return 'اليوم';
+    if (n === 1) return 'بكرة';
+    if (n === 2) return 'يومين';
+    if (n <= 10) return n + ' أيام';
+    return n + ' يوم';
+  }
+  function expiringIds(state, now, within) {
+    within = within == null ? 2 : within;
+    return Object.keys(state.pantry).filter(function (id) {
+      var d = daysLeft(state, id, now);
+      return d != null && d <= within;
+    }).sort(function (a, b) { return daysLeft(state, a, now) - daysLeft(state, b, now); });
+  }
+  function pantryCount(state) {
+    return Object.keys(state.pantry).length + state.basics.length;
+  }
+
+  // ===== الاقتراحات =====
+  function analyze(state, r, now) {
+    var exp = expiringIds(state, now);
+    var a = { missingReq: [], missingOpt: [], low: [], expiring: [] };
+    r.ing.forEach(function (x) {
+      var s = status(state, x.id);
+      if (s === 'basic' || s === 'have' || s === 'low') {
+        if (s === 'low') a.low.push(x.id);
+        if (exp.indexOf(x.id) >= 0) a.expiring.push(x.id);
+      } else if (x.opt) a.missingOpt.push(x.id);
+      else a.missingReq.push(x.id);
+    });
+    a.ready = a.missingReq.length === 0;
+    return a;
+  }
+
+  function lastCooked(state, rid) {
+    var t = 0;
+    state.history.forEach(function (h) { if (h.rid === rid && h.at > t) t = h.at; });
+    return t || null;
+  }
+  function relDays(ts, now) {
+    if (!ts) return '';
+    var d = Math.floor((startOfDay(now || Date.now()) - startOfDay(ts)) / DAY);
+    if (d <= 0) return 'اليوم';
+    if (d === 1) return 'أمس';
+    if (d === 2) return 'قبل يومين';
+    if (d <= 10) return 'قبل ' + d + ' أيام';
+    return 'قبل ' + d + ' يوم';
+  }
+
+  function matchesFilters(state, r, f) {
+    if (f.meal && r.meals.indexOf(f.meal) < 0) return false;
+    if (f.maxTime && r.time > f.maxTime) return false;
+    if (f.diff && r.diff !== f.diff) return false;
+    if (f.cuisine && r.cuisine !== f.cuisine) return false;
+    if (f.q) {
+      var q = stripAl(norm(f.q));
+      var hay = [r.name].concat(r.ing.map(function (x) { return ingName(state, x.id); })).map(function (s) { return stripAl(norm(s)); });
+      if (!hay.some(function (h) { return h.indexOf(q) >= 0; })) return false;
+    }
+    return true;
+  }
+
+  function suggest(state, f, now) {
+    now = now || Date.now();
+    f = f || {};
+    var ready = [], near = [];
+    allRecipes(state).forEach(function (r) {
+      if (!matchesFilters(state, r, f)) return;
+      var a = analyze(state, r, now);
+      if (f.useExpiring && !a.expiring.length) return;
+      var lc = lastCooked(state, r.id);
+      var recent = lc && (now - lc) < 3 * DAY;
+      var score = a.expiring.length * 10 - (recent ? 15 : 0) - r.time / 30 + (state.favs[r.id] ? 2 : 0);
+      var item = { r: r, a: a, score: score, last: lc };
+      if (a.ready) ready.push(item);
+      else if (a.missingReq.length <= 2) near.push(item);
+    });
+    ready.sort(function (x, y) { return y.score - x.score; });
+    near.sort(function (x, y) {
+      return (x.a.missingReq.length - y.a.missingReq.length) || (y.score - x.score);
+    });
+    return { ready: ready, near: near };
+  }
+
+  // ===== الكميات =====
+  function roundTo(v, step) { return Math.round(v / step) * step; }
+  function scaleOne(state, x, factor) {
+    var unit = x.unit, qty = x.qty;
+    if (qty == null || FIXED_UNITS.indexOf(unit) >= 0 || factor === 1) return { qty: qty, unit: unit };
+    var info = ing(state, x.id);
+    var spicy = (info && info.cat === 'spice') || unit === 'عود' || unit === 'ورقة';
+    var v = spicy ? qty * Math.pow(factor, 0.75) : qty * factor;
+    if (unit === 'كجم') {
+      if (v < 1) { unit = 'جرام'; v = v * 1000; }
+      else v = Math.max(0.25, roundTo(v, 0.25));
+    }
+    if (unit === 'جرام') {
+      if (v >= 1000) { unit = 'كجم'; v = Math.max(1, roundTo(v / 1000, 0.25)); }
+      else v = Math.max(10, roundTo(v, v < 100 ? 10 : 50));
+    } else if (COUNT_UNITS.indexOf(unit) >= 0) {
+      v = v < 3 ? Math.max(0.5, roundTo(v, 0.5)) : Math.round(v);
+    } else if (FRACT_UNITS.indexOf(unit) >= 0) {
+      v = Math.max(0.25, roundTo(v, 0.25));
+    } else if (unit !== 'كجم') {
+      v = Math.round(v * 100) / 100;
+    }
+    return { qty: v, unit: unit };
+  }
+  function fmtNum(v) {
+    var whole = Math.floor(v + 1e-9), frac = Math.round((v - whole) * 100) / 100;
+    var glyph = { 0.25: '¼', 0.5: '½', 0.75: '¾' }[frac];
+    if (glyph) return (whole ? whole : '') + glyph;
+    if (frac === 0) return String(whole);
+    return String(Math.round(v * 100) / 100);
+  }
+  function fmtQty(q) {
+    if (q.qty == null) return q.unit || 'حسب الرغبة';
+    return fmtNum(q.qty) + (q.unit ? ' ' + q.unit : '');
+  }
+
+  // ===== قائمة المشتريات =====
+  function addShopping(state, opts, now) {
+    now = now || Date.now();
+    var name = (opts.name || (opts.ingId && ingName(state, opts.ingId)) || '').trim();
+    if (!name) return null;
+    var existing = state.shopping.filter(function (s) {
+      return !s.done && ((opts.ingId && s.ingId === opts.ingId) || norm(s.name) === norm(name));
+    })[0];
+    if (existing) {
+      if (opts.from && existing.from.indexOf(opts.from) < 0) existing.from.push(opts.from);
+      existing.updatedAt = now;
+      return existing;
+    }
+    var info = opts.ingId ? ing(state, opts.ingId) : null;
+    var item = {
+      id: uid(), ingId: opts.ingId || null, name: name, cat: info ? info.cat : (opts.cat || 'other'),
+      from: opts.from ? [opts.from] : [], done: false, doneAt: null, updatedAt: now
+    };
+    state.shopping.push(item);
+    return item;
+  }
+  function toggleShopping(state, id, now) {
+    now = now || Date.now();
+    var it = state.shopping.filter(function (s) { return s.id === id; })[0];
+    if (!it) return null;
+    it.done = !it.done;
+    it.doneAt = it.done ? now : null;
+    it.updatedAt = now;
+    if (it.done) {
+      if (!it.ingId) {
+        var f = findIng(state, it.name);
+        it.ingId = f.exact ? f.exact.id : addCustomIng(state, it.name, it.cat).id;
+      }
+      it.prevPantry = state.pantry[it.ingId] ? JSON.parse(JSON.stringify(state.pantry[it.ingId])) : null;
+      restock(state, it.ingId, now);
+    } else if (it.ingId) {
+      if (it.prevPantry) state.pantry[it.ingId] = it.prevPantry; else delete state.pantry[it.ingId];
+      it.prevPantry = null;
+    }
+    return it;
+  }
+  function clearDone(state) {
+    state.shopping = state.shopping.filter(function (s) { return !s.done; });
+  }
+  function openShoppingCount(state) {
+    return state.shopping.filter(function (s) { return !s.done; }).length;
+  }
+
+  // ===== بعد الطبخ =====
+  function logCooked(state, rid, used, now) {
+    now = now || Date.now();
+    state.history.unshift({ id: uid(), rid: rid, at: now });
+    if (state.history.length > 300) state.history.length = 300;
+    (used || []).forEach(function (u) {
+      if (u.action === 'gone') removePantry(state, u.id);
+      else if (u.action === 'low') setPantry(state, u.id, 'low', now);
+    });
+  }
+
+  // ===== النسخ الاحتياطي =====
+  function exportData(state) {
+    return JSON.stringify({ app: 'wash-atbukh', exportedAt: new Date().toISOString(), state: state }, null, 1);
+  }
+  function importData(text) {
+    var o = JSON.parse(text);
+    if (!o || o.app !== 'wash-atbukh' || !o.state || typeof o.state.pantry !== 'object') throw new Error('bad');
+    return fixState(o.state);
+  }
+
+  return {
+    DAY: DAY, uid: uid, norm: norm, newState: newState, fixState: fixState,
+    ing: ing, ingName: ingName, allIngs: allIngs, allRecipes: allRecipes, recipe: recipe,
+    findIng: findIng, addCustomIng: addCustomIng,
+    status: status, has: has, setPantry: setPantry, restock: restock, removePantry: removePantry, setExpiry: setExpiry,
+    daysLeft: daysLeft, daysText: daysText, expiringIds: expiringIds, pantryCount: pantryCount,
+    analyze: analyze, suggest: suggest, lastCooked: lastCooked, relDays: relDays,
+    scaleOne: scaleOne, fmtQty: fmtQty, fmtNum: fmtNum,
+    addShopping: addShopping, toggleShopping: toggleShopping, clearDone: clearDone, openShoppingCount: openShoppingCount,
+    logCooked: logCooked, exportData: exportData, importData: importData
+  };
+})();
+
+/* وش أطبخ؟ — الواجهة */
+(function () {
+  'use strict';
+  var KEY = 'wash-atbukh-v1';
+  var VERSION = '1.0';
+  var L = Logic, D = DATA;
+  var S = null;
+  var ui = {
+    tab: 'home',
+    f: { meal: null, maxTime: null, diff: null, cuisine: null, q: '', useExpiring: false },
+    pantrySeg: 'all', mineSeg: 'fav', showAll: false,
+    overlay: null,   // {type:'recipe'|'editor'|'settings', ...}
+    sheet: null,
+    cook: null
+  };
+  var FRAMED = (function () { try { return window.self !== window.top; } catch (e) { return true; } })();
+
+  /* ===== الأيقونات ===== */
+  var P = {
+    home: '<path d="M4 10.5L12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/>',
+    box: '<path d="M4 8h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M3 4.5h18V8H3z"/><path d="M10 12h4"/>',
+    cart: '<path d="M3 4h2.2l2.2 10.5h10.4L20 7.5H6.3"/><circle cx="9" cy="19" r="1.4"/><circle cx="17" cy="19" r="1.4"/>',
+    heart: '<path d="M12 19.5s-7-4.3-7-9.6A3.9 3.9 0 0 1 12 7.6a3.9 3.9 0 0 1 7 2.3c0 5.3-7 9.6-7 9.6z"/>',
+    search: '<circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/>',
+    sliders: '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>',
+    clock: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
+    bars: '<path d="M6 18v-4M12 18v-8M18 18V6"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    minus: '<path d="M5 12h14"/>',
+    chevR: '<path d="M9.5 6l6 6-6 6"/>',
+    chevL: '<path d="M14.5 6l-6 6 6 6"/>',
+    x: '<path d="M6 6l12 12M18 6L6 18"/>',
+    gear: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/>',
+    play: '<path d="M8 5.5v13l10-6.5z" fill="currentColor" stroke="none"/>',
+    pause: '<path d="M9 6v12M15 6v12"/>',
+    reset: '<path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/>',
+    mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+    phone: '<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
+    users: '<circle cx="9" cy="8.5" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><path d="M16 5.6a3.2 3.2 0 0 1 0 6M18 19a6 6 0 0 0-2.5-4.9"/>',
+    edit: '<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>',
+    trash: '<path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13"/>',
+    share: '<path d="M12 15V3.5M7.5 8L12 3.5 16.5 8"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/>',
+    upload: '<path d="M12 4v11.5M7.5 11L12 15.5 16.5 11"/><path d="M5 20h14"/>',
+    copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
+    bell: '<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/>'
+  };
+  function svg(n, s, extra) {
+    s = s || 22;
+    return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="' + (extra || 'none') + '" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + P[n] + '</svg>';
+  }
+
+  /* ===== أدوات ===== */
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function cuisineName(id) { var c = D.CUISINES.filter(function (x) { return x.id === id; })[0]; return c ? c.name : ''; }
+  function catName(id) { var c = D.CATS.filter(function (x) { return x.id === id; })[0]; return c ? c.name : 'أخرى'; }
+  function mealNames(r) { return r.meals.map(function (m) { return D.MEALS.filter(function (x) { return x.id === m; })[0].name; }).join(' · '); }
+  function tileCls(r) { return 'tile' + (r.cuisine === 'saudi' ? '' : ' ' + r.cuisine); }
+  function initial(n) { return esc(String(n || '؟').trim().charAt(0)); }
+  function fmtTime(m) {
+    if (m < 60) return m + ' د';
+    var h = Math.floor(m / 60), r = m % 60;
+    return h + ' س' + (r ? ' ' + r + ' د' : '');
+  }
+  function names(ids) { return ids.map(function (id) { return L.ingName(S, id); }).join('، '); }
+  function toDigits(s) {
+    return String(s || '').replace(/[٠-٩]/g, function (d) { return String(d.charCodeAt(0) - 1632); }).replace(/٫/g, '.');
+  }
+  function parseQty(s) {
+    s = toDigits(s).trim();
+    if (!s) return null;
+    var map = { '¼': 0.25, '½': 0.5, '¾': 0.75 };
+    var m = s.match(/^(\d+)?\s*([¼½¾])$/);
+    if (m) return (+m[1] || 0) + map[m[2]];
+    m = s.match(/^(\d+)\s*\/\s*(\d+)$/);
+    if (m && +m[2]) return +m[1] / +m[2];
+    m = s.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+    if (m && +m[3]) return +m[1] + (+m[2] / +m[3]);
+    var v = parseFloat(s);
+    return isNaN(v) ? null : v;
+  }
+  var W = { dish: ['طبق واحد', 'طبقين', 'أطباق', 'طبق'], ing: ['مكون واحد', 'مكونين', 'مكونات', 'مكون'],
+    item: ['غرض واحد', 'غرضين', 'أغراض', 'غرض'], recipe: ['وصفة وحدة', 'وصفتين', 'وصفات', 'وصفة'], person: ['شخص واحد', 'شخصين', 'أشخاص', 'شخص'] };
+  function cnt(n, w) {
+    w = W[w];
+    if (n === 1) return w[0];
+    if (n === 2) return w[1];
+    return '<span class="num">' + n + '</span> ' + (n >= 3 && n <= 10 ? w[2] : w[3]);
+  }
+  function qtyHtml(q) {
+    if (q.qty == null) return esc(q.unit || 'حسب الرغبة');
+    return '<bdi dir="ltr" class="num">' + L.fmtNum(q.qty) + '</bdi>' + (q.unit ? ' ' + esc(q.unit) : '');
+  }
+  function snapshot() { return JSON.stringify(S); }
+  function restore(snap) { S = L.fixState(JSON.parse(snap)); save(); refresh(); }
+
+  /* ===== الحفظ ===== */
+  var saveWarned = false;
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(S)); }
+    catch (e) {
+      if (!saveWarned) { saveWarned = true; toast('ما قدرت أحفظ تعديلاتك على هذا الجهاز. سوّ نسخة احتياطية من الإعدادات.'); }
+    }
+  }
+  function load() {
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (e) { raw = null; }
+    if (raw) {
+      try { S = L.fixState(JSON.parse(raw)); return; } catch (e) { /* نسخة تالفة */ }
+    }
+    S = L.newState();
+    seedDemo();
+  }
+  function seedDemo() {
+    var now = Date.now();
+    var have = ['onion', 'potato', 'lemon', 'chili', 'mince', 'jareesh', 'lentil', 'pasta', 'kabsaspice', 'cumin',
+      'cardamom', 'bayleaf', 'egg', 'whitecheese', 'butter', 'tomatopaste', 'garlic', 'bread', 'chicken', 'tomato', 'zucchini', 'carrot', 'ghee'];
+    have.forEach(function (id) { L.setPantry(S, id, 'have', now); });
+    ['rice', 'loomi', 'cinnamon'].forEach(function (id) { L.setPantry(S, id, 'low', now); });
+    L.setExpiry(S, 'tomato', 1, now);
+    L.setExpiry(S, 'zucchini', 2, now);
+    S.demo = true;
+    S.onboarded = true;
+  }
+
+  /* ===== الرسالة السفلية ===== */
+  var toastTimer = null;
+  function toast(msg, undo) {
+    var box = $('#toast');
+    if (!box) return;
+    clearTimeout(toastTimer);
+    box.innerHTML = '<div class="toast" role="status"><span>' + esc(msg) + '</span>' + (undo ? '<button type="button" data-act="undo">تراجع</button>' : '') + '</div>';
+    toast.undo = undo || null;
+    toastTimer = setTimeout(function () { box.innerHTML = ''; toast.undo = null; }, undo ? 5000 : 3200);
+  }
+
+  /* ===== الشاشات ===== */
+  function nav() {
+    var n = L.openShoppingCount(S);
+    var tabs = [['home', 'home', 'الرئيسية'], ['pantry', 'box', 'مطبخي'], ['shop', 'cart', 'المشتريات'], ['mine', 'heart', 'وصفاتي']];
+    return '<nav class="nav" aria-label="التنقل الرئيسي">' + tabs.map(function (t) {
+      return '<button type="button" data-act="tab" data-v="' + t[0] + '"' + (ui.tab === t[0] ? ' aria-current="page"' : '') + '>' + svg(t[1], 24) + '<span>' + t[2] + '</span>' +
+        (t[0] === 'shop' && n ? '<span class="cnt num">' + n + '</span>' : '') + '</button>';
+    }).join('') + '</nav>';
+  }
+
+  function metaHtml(r) {
+    var lc = L.lastCooked(S, r.id);
+    return '<span class="meta"><span>' + svg('clock', 15) + '<span class="num">' + fmtTime(r.time) + '</span></span><span>' + svg('bars', 15) + D.DIFFS[r.diff] + '</span><span>' + cuisineName(r.cuisine) + '</span>' +
+      (lc ? '<span>طبختها ' + L.relDays(lc) + '</span>' : '') + '</span>';
+  }
+
+  function demoNote() {
+    return S.demo ? '<div class="demo"><span>هذا مطبخ تجريبي عشان تشوف الفكرة.</span><button type="button" class="link" data-act="clearDemo">ابدأ بمطبخك</button></div>' : '';
+  }
+
+  function installTip() {
+    if (FRAMED || S.installTipOff) return '';
+    var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone;
+    if (standalone) return '';
+    var ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+    if (!ios) return '';
+    return '<div class="tip">' + svg('share', 20) + '<span>ثبّته على جوالك: اضغط زر المشاركة في سفاري، بعدها «إضافة إلى الشاشة الرئيسية».</span><button type="button" class="x" data-act="hideInstall" aria-label="إخفاء">' + svg('x', 18) + '</button></div>';
+  }
+
+  function homeHtml() {
+    var now = Date.now(), f = ui.f, n = L.pantryCount(S);
+    var h = '<div class="top"><div><p>' + (Object.keys(S.pantry).length ? 'عندك ' + cnt(n, 'ing') + ' في مطبخك' : 'مطبخك فاضي') + '</p><h1>وش تطبخ اليوم؟</h1></div>' +
+      '<button type="button" class="iconbtn" data-act="settings" aria-label="الإعدادات">' + svg('gear', 22) + '</button></div>';
+    h += installTip();
+    h += '<label class="search">' + svg('search', 20) + '<input id="q" type="search" enterkeyhint="search" autocomplete="off" placeholder="ابحث عن طبق أو مكون" aria-label="ابحث عن طبق أو مكون" value="' + esc(f.q) + '"></label>';
+    var adv = (f.maxTime && f.maxTime !== 30 ? 1 : 0) + (f.diff && f.diff !== 1 ? 1 : 0);
+    h += '<div class="chips-row" role="group" aria-label="الفلاتر">';
+    h += '<button type="button" class="chip" data-act="filters" aria-label="كل الفلاتر">' + svg('sliders', 18) + (adv ? '<span class="badge">' + adv + '</span>' : '') + '</button>';
+    D.MEALS.forEach(function (m) { h += chip('meal', m.id, m.name, f.meal === m.id); });
+    h += chip('time', '30', 'أقل من 30 د', f.maxTime === 30);
+    h += chip('easy', '1', 'سهل', f.diff === 1);
+    D.CUISINES.forEach(function (c) { h += chip('cuisine', c.id, c.name, f.cuisine === c.id); });
+    h += '</div>';
+    h += demoNote();
+    var exp = L.expiringIds(S, now);
+    if (exp.length) {
+      var using = L.suggest(S, { useExpiring: true }, now);
+      var k = using.ready.length + using.near.length;
+      h += '<button type="button" class="banner' + (f.useExpiring ? ' on' : '') + '" data-act="useExp" aria-pressed="' + f.useExpiring + '"><span class="ico">' + svg('clock', 20) + '</span><span class="txt"><b>' +
+        (exp.length > 2 ? cnt(exp.length, 'ing') + ' قربت تخرب' : esc(exp.map(function (id) { return L.ingName(S, id); }).join(' و')) + ' ' + (exp.length === 1 ? 'قرب يخرب' : 'قربت تخرب')) + '</b><small>' +
+        (f.useExpiring ? 'تعرض الأطباق اللي تستخدمها · اضغط للكل' : (exp.length > 2 ? esc(names(exp.slice(0, 3))) + ' · ' : '') + cnt(k, 'dish') + ' تستخدمها') + '</small></span>' + svg('chevL', 18) + '</button>';
+    }
+    h += '<div id="results" class="stack">' + resultsHtml() + '</div>';
+    return h;
+  }
+  function chip(act, v, label, on) {
+    return '<button type="button" class="chip' + (on ? ' on' : '') + '" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + !!on + '">' + label + '</button>';
+  }
+  function filtersOn() { var f = ui.f; return !!(f.meal || f.maxTime || f.diff || f.cuisine || f.q || f.useExpiring); }
+
+  function resultsHtml() {
+    var sg = L.suggest(S, ui.f, Date.now());
+    var h = '';
+    if (!sg.ready.length && !sg.near.length) {
+      if (filtersOn()) return '<div class="empty"><b>ما لقيت أطباق بهذي الفلاتر</b><span>جرّب تخفف الفلاتر أو تبحث بكلمة ثانية.</span><button type="button" class="btn btn-ghost" data-act="clearFilters">امسح الفلاتر</button></div>';
+      return '<div class="empty"><b>سجّل اللي في مطبخك</b><span>أول ما تضيف مكوناتك، أطلع لك الأطباق اللي تقدر تطبخها.</span><button type="button" class="btn btn-primary" data-act="addSheet">' + svg('plus', 18) + 'أضف مكونات</button></div>';
+    }
+    if (sg.ready.length) {
+      var list = ui.showAll ? sg.ready : sg.ready.slice(0, 6);
+      h += '<div class="sec-h"><h2>تقدر تطبخها الحين</h2><span>' + cnt(sg.ready.length, 'dish') + '</span></div><div class="list">';
+      list.forEach(function (it, i) {
+        var r = it.r, a = it.a;
+        var uses = a.expiring.length ? '<span class="uses">تستخدم ' + esc(names(a.expiring)) + '</span>' : '';
+        if (i === 0) {
+          h += '<button type="button" class="feat" data-act="open" data-id="' + r.id + '"><span class="' + tileCls(r) + '"><span aria-hidden="true">' + initial(r.name) + '</span><span class="pill">' + svg('check', 14) + 'كل المكونات عندك</span></span>' +
+            '<span class="body"><span class="name">' + esc(r.name) + '</span>' + metaHtml(r) + uses + '</span></button>';
+        } else {
+          h += '<button type="button" class="row" data-act="open" data-id="' + r.id + '"><span class="' + tileCls(r) + '" aria-hidden="true">' + initial(r.name) + '</span><span class="main"><span class="name">' + esc(r.name) + '</span>' + metaHtml(r) + uses + '</span>' +
+            '<span class="okdot" title="كل المكونات عندك">' + svg('check', 15) + '</span></button>';
+        }
+      });
+      h += '</div>';
+      if (sg.ready.length > 6) h += '<button type="button" class="btn btn-ghost more" data-act="showAll">' + (ui.showAll ? 'أقل' : 'عرض الكل (' + sg.ready.length + ')') + '</button>';
+    }
+    if (sg.near.length) {
+      h += '<div class="sec-h"><h2>ناقصها شي بسيط</h2><span>' + cnt(sg.near.length, 'dish') + '</span></div><div class="list">';
+      sg.near.slice(0, 12).forEach(function (it) {
+        var r = it.r, a = it.a;
+        var inList = a.missingReq.every(function (id) { return S.shopping.some(function (s) { return !s.done && s.ingId === id; }); });
+        h += '<div class="row"><button type="button" class="row-open" data-act="open" data-id="' + r.id + '"><span class="' + tileCls(r) + '" aria-hidden="true">' + initial(r.name) + '</span><span class="main"><span class="name">' + esc(r.name) + '</span>' +
+          '<span class="miss">ناقص: ' + esc(names(a.missingReq)) + '</span></span></button>' +
+          (inList ? '<span class="pill gray">في القائمة</span>' : '<button type="button" class="btn btn-ghost btn-sm" data-act="addmiss" data-id="' + r.id + '">' + svg('plus', 15) + 'للقائمة</button>') + '</div>';
+      });
+      h += '</div>';
+    }
+    return h;
+  }
+
+  function pantryHtml() {
+    var now = Date.now();
+    var ids = Object.keys(S.pantry);
+    var exp = L.expiringIds(S, now);
+    var low = ids.filter(function (id) { return S.pantry[id].status === 'low'; });
+    var last = 0; ids.forEach(function (id) { last = Math.max(last, S.pantry[id].updatedAt || 0); });
+    var h = '<div class="top"><div><h1>مطبخي</h1><p>' + cnt(L.pantryCount(S), 'ing') + (last ? ' · حدّثته ' + L.relDays(last) : '') + '</p></div>' +
+      '<button type="button" class="btn btn-primary" data-act="addSheet">' + svg('plus', 18) + 'إضافة</button></div>';
+    h += demoNote();
+    h += '<div class="seg" role="group" aria-label="عرض">' +
+      segBtn('pseg', 'all', 'الكل', ui.pantrySeg) + segBtn('pseg', 'low', 'قارب يخلص · ' + low.length, ui.pantrySeg) + segBtn('pseg', 'exp', 'يخرب قريب · ' + exp.length, ui.pantrySeg) + '</div>';
+    h += '<div class="note"><span>الأساسيات محسوبة دايماً: ' + esc(names(S.basics)) + '</span><button type="button" class="link" data-act="settings">تعديل</button></div>';
+    var show = ids.filter(function (id) {
+      if (ui.pantrySeg === 'low') return S.pantry[id].status === 'low';
+      if (ui.pantrySeg === 'exp') return exp.indexOf(id) >= 0;
+      return true;
+    });
+    if (!ids.length) {
+      return h + '<div class="empty"><b>مطبخك فاضي</b><span>سجّل اللي عندك مرة وحدة، وحدّثه لما تخلص حاجة أو تشتري جديد.</span><button type="button" class="btn btn-primary" data-act="addSheet">' + svg('plus', 18) + 'أضف مكونات</button></div>';
+    }
+    if (!show.length) return h + '<div class="empty"><span>' + (ui.pantrySeg === 'low' ? 'ما فيه شي قارب يخلص.' : 'ما فيه شي بيخرب قريب.') + '</span></div>';
+    var cats = D.CATS.map(function (c) { return c.id; });
+    cats.forEach(function (cid) {
+      var inCat = show.filter(function (id) { var x = L.ing(S, id); return (x ? x.cat : 'other') === cid; });
+      if (!inCat.length) return;
+      inCat.sort(function (a, b) {
+        var da = exp.indexOf(a) >= 0 ? 0 : 1, db = exp.indexOf(b) >= 0 ? 0 : 1;
+        return (da - db) || L.ingName(S, a).localeCompare(L.ingName(S, b), 'ar');
+      });
+      h += '<section class="group"><div class="group-h"><h3>' + catName(cid) + '</h3><span class="num">' + inCat.length + '</span></div><div class="wrap">';
+      inCat.forEach(function (id) {
+        var p = S.pantry[id], dl = L.daysLeft(S, id, now);
+        var isExp = exp.indexOf(id) >= 0;
+        var cls = isExp ? ' warn' : (p.status === 'low' ? ' low dot' : '');
+        var sub = isExp ? ' <small>· ' + L.daysText(dl) + '</small>' : (p.status === 'low' ? ' <small>· قارب يخلص</small>' : '');
+        h += '<button type="button" class="ing' + cls + '" data-act="ing" data-id="' + id + '">' + (isExp ? svg('clock', 14) : '') + esc(L.ingName(S, id)) + sub + '</button>';
+      });
+      h += '</div></section>';
+    });
+    return h;
+  }
+  function segBtn(act, v, label, cur) {
+    return '<button type="button" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + (cur === v) + '">' + label + '</button>';
+  }
+
+  function shopHtml() {
+    var open = S.shopping.filter(function (s) { return !s.done; });
+    var done = S.shopping.filter(function (s) { return s.done; });
+    var froms = {}; open.forEach(function (s) { s.from.forEach(function (f) { froms[f] = 1; }); });
+    var k = Object.keys(froms).length;
+    var h = '<div class="top"><div><h1>قائمة المشتريات</h1><p>' + (open.length ? 'باقي ' + cnt(open.length, 'item') + (k ? ' · من ' + cnt(k, 'recipe') : '') : 'القائمة فاضية') + '</p></div>' +
+      (done.length ? '<button type="button" class="btn btn-ghost btn-sm" data-act="clearDone">مسح المشطوب</button>' : '') + '</div>';
+    h += '<form class="add-line" id="shopForm" autocomplete="off"><label class="search">' + svg('plus', 20) + '<input id="shopIn" type="text" enterkeyhint="done" placeholder="أضف غرض…" aria-label="أضف غرض للقائمة"></label><button type="submit" class="btn btn-primary">أضف</button></form>';
+    if (!S.shopping.length) {
+      h += '<div class="empty"><b>ما فيه شي تشتريه</b><span>الأطباق اللي ناقصها مكون، اضغط «للقائمة» وتنضاف هنا.</span></div>';
+    }
+    D.CATS.forEach(function (c) {
+      var items = open.filter(function (s) { return (s.cat || 'other') === c.id; });
+      if (!items.length) return;
+      h += '<section><h2 class="shop-h">' + c.name + '</h2><div class="box">' + items.map(checkHtml).join('') + '</div></section>';
+    });
+    if (done.length) h += '<section><h2 class="shop-h">تم الشراء</h2><div class="box">' + done.map(checkHtml).join('') + '</div></section>';
+    h += '<div class="tip">' + svg('box', 18) + '<span>أي غرض تشطبه هنا ينضاف لمطبخك تلقائياً.</span></div>';
+    return h;
+  }
+  function checkHtml(s) {
+    return '<label class="check' + (s.done ? ' done' : '') + '"><input type="checkbox" data-act="toggleShop" data-id="' + s.id + '"' + (s.done ? ' checked' : '') + '><span class="box-ui">' + svg('check', 16) + '</span>' +
+      '<span class="nm">' + esc(s.name) + '</span>' +
+      (s.done ? '<span class="gone">' + svg('check', 14) + 'انضاف لمطبخك</span>' :
+        (s.from.length ? '<span class="from">لـ ' + esc(s.from.join('، ')) + '</span>' : '') +
+        '<button type="button" class="x sm" data-act="delShop" data-id="' + s.id + '" aria-label="شيل ' + esc(s.name) + '">' + svg('x', 16) + '</button>') + '</label>';
+  }
+
+  function recipeRow(r, extra) {
+    var a = L.analyze(S, r, Date.now());
+    return '<button type="button" class="row" data-act="open" data-id="' + r.id + '"><span class="' + tileCls(r) + '" aria-hidden="true">' + initial(r.name) + '</span><span class="main"><span class="name">' + esc(r.name) + '</span>' +
+      (extra || (a.ready ? metaHtml(r) : '<span class="miss">ناقص: ' + esc(names(a.missingReq)) + '</span>')) + '</span>' + (a.ready && !extra ? '<span class="okdot" title="كل المكونات عندك">' + svg('check', 15) + '</span>' : '') + '</button>';
+  }
+
+  function mineHtml() {
+    var h = '<div class="top"><div><h1>وصفاتي</h1><p>مفضلتك ووصفاتك وش طبخت</p></div><button type="button" class="btn btn-primary" data-act="newRecipe">' + svg('plus', 18) + 'وصفة جديدة</button></div>';
+    h += '<div class="seg" role="group" aria-label="عرض">' + segBtn('mseg', 'fav', 'المفضلة', ui.mineSeg) + segBtn('mseg', 'mine', 'وصفاتي · ' + S.myRecipes.length, ui.mineSeg) + segBtn('mseg', 'hist', 'وش طبخنا', ui.mineSeg) + '</div>';
+    var list = '';
+    if (ui.mineSeg === 'fav') {
+      var favs = L.allRecipes(S).filter(function (r) { return S.favs[r.id]; });
+      list = favs.length ? favs.map(function (r) { return recipeRow(r); }).join('') : '<div class="empty"><b>ما فيه مفضلة للحين</b><span>اضغط القلب في أي وصفة عجبتك، وتلقاها هنا.</span></div>';
+    } else if (ui.mineSeg === 'mine') {
+      list = S.myRecipes.length ? S.myRecipes.map(function (r) { return recipeRow(r); }).join('') :
+        '<div class="empty"><b>أضف وصفات أهلك</b><span>أو أي وصفة جربتها وعجبتك. تنحسب في الاقتراحات مثل غيرها.</span><button type="button" class="btn btn-primary" data-act="newRecipe">' + svg('plus', 18) + 'وصفة جديدة</button></div>';
+    } else {
+      var hist = S.history.filter(function (x) { return L.recipe(S, x.rid); }).slice(0, 40);
+      list = hist.length ? hist.map(function (x) {
+        var r = L.recipe(S, x.rid);
+        var d = new Date(x.at);
+        return recipeRow(r, '<span class="meta"><span>' + svg('clock', 15) + L.relDays(x.at) + '</span><span class="num">' + d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn', { day: 'numeric', month: 'long' }) + '</span></span>');
+      }).join('') : '<div class="empty"><b>ما طبخت شي للحين</b><span>كل طبق تخلصه في وضع الطبخ ينسجل هنا، عشان ما يتكرر عليك نفس الطبق.</span></div>';
+    }
+    return h + '<div class="list">' + list + '</div>';
+  }
+
+  /* ===== صفحة الوصفة ===== */
+  function recipePage(o) {
+    var r = L.recipe(S, o.id);
+    if (!r) return '';
+    var a = L.analyze(S, r, Date.now());
+    var factor = o.persons / r.serves;
+    var fav = !!S.favs[r.id];
+    var lc = L.lastCooked(S, r.id);
+    var h = '<div class="page" role="dialog" aria-modal="true" aria-label="' + esc(r.name) + '"><div class="page-in">';
+    h += '<div class="hero ' + tileCls(r) + '"><span aria-hidden="true">' + initial(r.name) + '</span>' +
+      '<button type="button" class="iconbtn back" data-act="close" aria-label="رجوع">' + svg('chevR', 20) + '</button>' +
+      '<button type="button" class="iconbtn fav" data-act="fav" data-id="' + r.id + '" aria-pressed="' + fav + '" aria-label="المفضلة">' + svg('heart', 20, fav ? 'currentColor' : 'none') + '</button></div>';
+    h += '<div class="sheet-body" id="rbody">';
+    h += '<div class="title-row"><h1>' + esc(r.name) + '</h1>' + (a.ready ? '<span class="pill soft">' + svg('check', 14) + 'كل المكونات عندك</span>' : '<span class="pill warn">ناقص ' + cnt(a.missingReq.length, 'ing') + '</span>') + '</div>';
+    h += '<span class="meta"><span>' + svg('clock', 16) + '<span class="num">' + fmtTime(r.time) + '</span></span><span>' + svg('bars', 16) + D.DIFFS[r.diff] + '</span><span>' + cuisineName(r.cuisine) + ' · ' + mealNames(r) + '</span>' + (lc ? '<span>طبختها ' + L.relDays(lc) + '</span>' : '') + '</span>';
+    if (r.src === 'mine') h += '<div class="note"><span>هذي وصفتك</span><button type="button" class="link" data-act="editRecipe" data-id="' + r.id + '">' + 'تعديل</button></div>';
+    h += '<div class="persons"><span class="iconbtn" style="box-shadow:none" aria-hidden="true">' + svg('users', 20) + '</span><span class="txt"><b>عدد الأشخاص</b><small>' + (o.persons === r.serves ? 'الكميات تتغير تلقائياً' : 'الوصفة الأصلية لـ' + cnt(r.serves, 'person')) + '</small></span>' +
+      '<span class="stepper"><button type="button" data-act="pers" data-v="-1" aria-label="نقّص شخص">' + svg('minus', 18) + '</button><output class="num" aria-live="polite">' + o.persons + '</output><button type="button" class="plus" data-act="pers" data-v="1" aria-label="زِد شخص">' + svg('plus', 18) + '</button></span></div>';
+    h += '<div class="seg" role="group" aria-label="عرض">' + segBtn('rtab', 'ing', 'المكونات · ' + r.ing.length, o.tab) + segBtn('rtab', 'steps', 'الخطوات · ' + r.steps.length, o.tab) + '</div>';
+    if (o.tab === 'ing') {
+      h += '<ul class="ing-list">' + r.ing.map(function (x) {
+        var st = L.status(S, x.id);
+        var have = st === 'basic' || st === 'have' || st === 'low';
+        var cls = have ? 'ok' : (x.opt ? 'opt' : 'no');
+        var q = qtyHtml(L.scaleOne(S, x, factor));
+        return '<li><span class="st ' + cls + '" aria-label="' + (have ? 'عندك' : 'ما عندك') + '">' + (have ? svg('check', 14) : '') + '</span><span class="nm">' + esc(L.ingName(S, x.id)) +
+          (st === 'low' ? '<span class="pill low">قارب يخلص</span>' : '') + (x.opt ? '<span class="pill gray">اختياري</span>' : '') + (!have && !x.opt ? '<span class="pill warn">ناقص</span>' : '') +
+          '</span><span class="q">' + q + '</span></li>';
+      }).join('') + '</ul>';
+    } else {
+      h += '<ol class="steps">' + r.steps.map(function (s) {
+        return '<li><div style="flex:1"><p>' + esc(s.t) + '</p>' + (s.min ? '<small>' + svg('clock', 14) + '<span class="num">' + s.min + '</span> دقيقة</small>' : '') + '</div></li>';
+      }).join('') + '</ol>';
+    }
+    h += '</div><div class="cta">' + (a.missingReq.length ? '<button type="button" class="btn btn-ghost" data-act="addmiss" data-id="' + r.id + '" style="height:54px;border-radius:18px">' + svg('plus', 18) + 'الناقص للقائمة</button>' : '') +
+      '<button type="button" class="btn btn-primary btn-block" data-act="cook">' + svg('play', 20) + 'ابدأ الطبخ</button></div></div></div>';
+    return h;
+  }
+
+  /* ===== محرر الوصفة ===== */
+  function blankDraft() {
+    return { id: null, name: '', meals: ['l'], cuisine: 'saudi', time: 30, diff: 1, serves: 4,
+      ing: [{ name: '', qty: '', unit: 'حبة', opt: false }, { name: '', qty: '', unit: 'كوب', opt: false }], steps: [{ t: '', min: '' }], err: '' };
+  }
+  function draftFrom(r) {
+    return { id: r.id, name: r.name, meals: r.meals.slice(), cuisine: r.cuisine, time: r.time, diff: r.diff, serves: r.serves,
+      ing: r.ing.map(function (x) { return { name: L.ingName(S, x.id), qty: x.qty == null ? '' : L.fmtNum(x.qty), unit: x.unit || 'حسب الرغبة', opt: x.opt }; }),
+      steps: r.steps.map(function (s) { return { t: s.t, min: s.min || '' }; }), err: '' };
+  }
+  function editorPage(o) {
+    var d = o.draft;
+    var h = '<div class="page" role="dialog" aria-modal="true" aria-label="' + (d.id ? 'تعديل الوصفة' : 'وصفة جديدة') + '"><div class="page-in">';
+    h += '<div class="plain-h"><button type="button" class="iconbtn" data-act="close" aria-label="إغلاق">' + svg('x', 20) + '</button><h1>' + (d.id ? 'تعديل الوصفة' : 'وصفة جديدة') + '</h1>' +
+      '<button type="button" class="btn btn-primary btn-sm" data-act="saveRecipe">حفظ</button></div>';
+    h += '<div class="form-body" id="ebody"><div class="form">';
+    if (d.err) h += '<div class="err" role="alert">' + esc(d.err) + '</div>';
+    h += '<div class="field"><label for="e-name">اسم الطبق</label><input class="input" id="e-name" data-f="name" value="' + esc(d.name) + '" placeholder="مثلاً: مندي أم محمد"></div>';
+    h += '<div class="field"><span class="lbl">الوجبة</span><div class="wrap">' + D.MEALS.map(function (m) {
+      var on = d.meals.indexOf(m.id) >= 0;
+      return '<button type="button" class="ing pick' + (on ? ' on' : '') + '" data-act="eMeal" data-v="' + m.id + '" aria-pressed="' + on + '">' + m.name + '</button>';
+    }).join('') + '</div></div>';
+    h += '<div class="duo"><div class="field"><label for="e-cui">المطبخ</label><select class="input" id="e-cui" data-f="cuisine">' + D.CUISINES.map(function (c) {
+      return '<option value="' + c.id + '"' + (d.cuisine === c.id ? ' selected' : '') + '>' + c.name + '</option>';
+    }).join('') + '</select></div>';
+    h += '<div class="field"><label for="e-diff">الصعوبة</label><select class="input" id="e-diff" data-f="diff">' + [1, 2, 3].map(function (v) {
+      return '<option value="' + v + '"' + (+d.diff === v ? ' selected' : '') + '>' + D.DIFFS[v] + '</option>';
+    }).join('') + '</select></div></div>';
+    h += '<div class="duo"><div class="field"><label for="e-time">الوقت الكلي (دقيقة)</label><input class="input num" id="e-time" data-f="time" inputmode="numeric" value="' + esc(d.time) + '"></div>' +
+      '<div class="field"><label for="e-serves">تكفي كم شخص</label><input class="input num" id="e-serves" data-f="serves" inputmode="numeric" value="' + esc(d.serves) + '"></div></div>';
+    h += '<div class="field"><span class="lbl">المكونات</span><datalist id="ingNames">' + L.allIngs(S).map(function (x) { return '<option value="' + esc(x.name) + '"></option>'; }).join('') + '</datalist>';
+    d.ing.forEach(function (x, i) {
+      h += '<div class="ed-row"><input class="input" id="e-in-' + i + '" data-f="ing.' + i + '.name" list="ingNames" placeholder="المكون" aria-label="المكون ' + (i + 1) + '" value="' + esc(x.name) + '">' +
+        '<input class="input num" id="e-iq-' + i + '" data-f="ing.' + i + '.qty" inputmode="decimal" placeholder="الكمية" aria-label="الكمية" value="' + esc(x.qty) + '">' +
+        '<select class="input" id="e-iu-' + i + '" data-f="ing.' + i + '.unit" aria-label="الوحدة">' + D.UNITS.map(function (u) { return '<option' + (x.unit === u ? ' selected' : '') + '>' + u + '</option>'; }).join('') + '</select>' +
+        '<button type="button" class="x" data-act="eDelIng" data-v="' + i + '" aria-label="احذف المكون">' + svg('x', 16) + '</button></div>' +
+        '<label class="ed-sub"><input type="checkbox" id="e-io-' + i + '" data-f="ing.' + i + '.opt"' + (x.opt ? ' checked' : '') + '> اختياري (للتزيين أو حسب الرغبة)</label>';
+    });
+    h += '<button type="button" class="btn btn-soft" data-act="eAddIng">' + svg('plus', 18) + 'مكون</button></div>';
+    h += '<div class="field"><span class="lbl">الخطوات</span>';
+    d.steps.forEach(function (s, i) {
+      h += '<div class="ed-step"><textarea class="input" id="e-st-' + i + '" data-f="steps.' + i + '.t" placeholder="الخطوة ' + (i + 1) + '" aria-label="الخطوة ' + (i + 1) + '">' + esc(s.t) + '</textarea>' +
+        '<input class="input num" id="e-sm-' + i + '" data-f="steps.' + i + '.min" inputmode="numeric" placeholder="دقائق" aria-label="مدة الخطوة بالدقائق" value="' + esc(s.min) + '">' +
+        '<button type="button" class="x" data-act="eDelStep" data-v="' + i + '" aria-label="احذف الخطوة">' + svg('x', 16) + '</button></div>';
+    });
+    h += '<button type="button" class="btn btn-soft" data-act="eAddStep">' + svg('plus', 18) + 'خطوة</button><span class="small muted">اكتب الدقائق للخطوات اللي فيها انتظار، ويطلع لها مؤقت في وضع الطبخ.</span></div>';
+    if (d.id) h += '<button type="button" class="btn btn-danger" data-act="delRecipe">' + svg('trash', 18) + 'احذف الوصفة</button>';
+    h += '</div></div></div></div>';
+    return h;
+  }
+  function setDraftField(d, path, el) {
+    var parts = path.split('.');
+    var v = el.type === 'checkbox' ? el.checked : el.value;
+    if (parts.length === 1) d[parts[0]] = v;
+    else d[parts[0]][+parts[1]][parts[2]] = v;
+  }
+  function saveDraft(d) {
+    var name = String(d.name).trim();
+    var ings = d.ing.filter(function (x) { return String(x.name).trim(); });
+    var steps = d.steps.filter(function (s) { return String(s.t).trim(); });
+    if (!name) return 'اكتب اسم الطبق.';
+    if (!d.meals.length) return 'اختر وجبة وحدة على الأقل.';
+    if (!ings.length) return 'أضف مكون واحد على الأقل.';
+    if (!steps.length) return 'أضف خطوة وحدة على الأقل.';
+    var time = parseInt(toDigits(d.time), 10), serves = parseInt(toDigits(d.serves), 10);
+    if (!(time > 0)) return 'اكتب الوقت الكلي بالدقائق.';
+    if (!(serves > 0)) return 'اكتب عدد الأشخاص اللي تكفيهم.';
+    var seen = {};
+    var ingOut = [];
+    ings.forEach(function (x) {
+      var f = L.findIng(S, x.name);
+      var info = f.exact || L.addCustomIng(S, x.name, 'other');
+      if (seen[info.id]) return;
+      seen[info.id] = 1;
+      var q = parseQty(x.qty);
+      ingOut.push({ id: info.id, qty: x.unit === 'حسب الرغبة' || x.unit === 'رشة' ? (q || null) : q, unit: x.unit, opt: !!x.opt });
+    });
+    var stepOut = steps.map(function (s) {
+      var t = String(s.t).trim(), nt = L.norm(t);
+      var used = ingOut.filter(function (x) {
+        var n = L.norm(L.ingName(S, x.id));
+        return nt.indexOf(n) >= 0 || nt.indexOf(n.split(' ')[0]) >= 0 && n.split(' ')[0].length > 2;
+      }).map(function (x) { return x.id; });
+      return { t: t, min: parseInt(toDigits(s.min), 10) || 0, ing: used };
+    });
+    var r = { id: d.id || 'm_' + L.uid(), name: name, cuisine: d.cuisine, meals: d.meals.slice(), time: time, diff: +d.diff || 1, serves: serves, src: 'mine', ing: ingOut, steps: stepOut, updatedAt: Date.now() };
+    var i = S.myRecipes.map(function (x) { return x.id; }).indexOf(r.id);
+    if (i >= 0) S.myRecipes[i] = r; else S.myRecipes.unshift(r);
+    return r;
+  }
+
+  /* ===== الإعدادات ===== */
+  function settingsPage() {
+    var h = '<div class="page" role="dialog" aria-modal="true" aria-label="الإعدادات"><div class="page-in">';
+    h += '<div class="plain-h"><button type="button" class="iconbtn" data-act="close" aria-label="إغلاق">' + svg('x', 20) + '</button><h1>الإعدادات</h1></div><div class="form-body">';
+    h += '<section class="set-sec"><h2>عدد الأشخاص</h2><div class="set-row"><p>الوصفات تفتح على هذا العدد، وتقدر تغيره داخل كل وصفة.</p><span class="stepper"><button type="button" data-act="defP" data-v="-1" aria-label="نقّص">' + svg('minus', 18) + '</button><output class="num">' + S.settings.persons + '</output><button type="button" class="plus" data-act="defP" data-v="1" aria-label="زِد">' + svg('plus', 18) + '</button></span></div></section>';
+    h += '<section class="set-sec"><h2>الأساسيات</h2><p>مكونات تعتبر موجودة دايماً، فما تطلع لك ناقصة في أي طبق.</p><div class="wrap">' + S.basics.map(function (id) {
+      return '<button type="button" class="ing pick" data-act="rmBasic" data-id="' + id + '" aria-label="شيل ' + esc(L.ingName(S, id)) + ' من الأساسيات">' + esc(L.ingName(S, id)) + ' ' + svg('x', 14) + '</button>';
+    }).join('') + '<button type="button" class="ing pick" data-act="addBasic">' + svg('plus', 14) + 'أضف</button></div></section>';
+    var lb = S.lastBackup ? L.relDays(S.lastBackup) : 'ما سويت نسخة للحين';
+    h += '<section class="set-sec"><h2>النسخة الاحتياطية</h2><p>كل بياناتك محفوظة على هذا الجوال بس. احفظ نسخة بين فترة وفترة عشان ما تضيع لو حذفت التطبيق أو غيّرت الجوال.</p><p>آخر نسخة: ' + lb + '</p>' +
+      '<div class="set-row" style="justify-content:flex-start;flex-wrap:wrap"><button type="button" class="btn btn-primary" data-act="export">' + svg('share', 18) + 'احفظ نسخة</button>' +
+      (FRAMED ? '<button type="button" class="btn btn-ghost" data-act="importText">' + svg('upload', 18) + 'استرجع نسخة</button>' :
+        '<label class="btn btn-ghost" for="impFile">' + svg('upload', 18) + 'استرجع نسخة</label><input type="file" id="impFile" accept="application/json,.json" class="sr">') + '</div></section>';
+    var hasVoice = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
+    h += '<section class="set-sec"><h2>الأوامر الصوتية في وضع الطبخ</h2><div class="set-row"><p>' + (hasVoice ? 'قل «التالي» أو «السابق» أو «شغّل المؤقت». على الآيفون غالباً تحتاج إنترنت، واللمس يبقى شغال دايماً.' : 'جهازك ما يدعمها هنا. تقدر تلمس أي مكان في الشاشة عشان تنتقل للخطوة التالية.') + '</p>' +
+      (hasVoice ? '<button type="button" class="switch" role="switch" aria-checked="' + !!S.settings.voice + '" aria-label="الأوامر الصوتية" data-act="voicePref"></button>' : '') + '</div></section>';
+    h += '<section class="set-sec"><h2>البيانات</h2>' + (S.demo ? '<p>المطبخ الحالي تجريبي.</p><button type="button" class="btn btn-ghost" data-act="clearDemo">امسح المطبخ التجريبي وابدأ بمطبخك</button>' : '') +
+      '<button type="button" class="btn btn-danger" data-act="wipe">' + svg('trash', 18) + 'امسح كل شي وابدأ من جديد</button></section>';
+    h += '<p class="ver">وش أطبخ؟ · الإصدار ' + VERSION + ' · <span class="num">' + D.RECIPES.length + '</span> وصفة أساسية</p>';
+    h += '</div></div></div>';
+    return h;
+  }
+
+  /* ===== الأوراق السفلية ===== */
+  function sheetHtml(sh) {
+    var h = '<div class="backdrop" data-act="backdrop"><div class="sheet" role="dialog" aria-modal="true" aria-label="' + esc(sheetTitle(sh)) + '"><span class="grab" aria-hidden="true"></span>';
+    if (sh.type === 'add') h += addSheet(sh);
+    else if (sh.type === 'ing') h += ingSheet(sh);
+    else if (sh.type === 'filters') h += filterSheet();
+    else if (sh.type === 'fin') h += finSheet(sh);
+    else if (sh.type === 'confirm') h += '<h2>' + esc(sh.title) + '</h2>' + (sh.body ? '<p class="muted" style="margin:0">' + esc(sh.body) + '</p>' : '') +
+      '<div class="acts"><button type="button" class="btn btn-ghost" data-act="closeSheet">رجوع</button><button type="button" class="btn ' + (sh.danger ? 'btn-danger' : 'btn-primary') + '" data-act="confirmOk">' + esc(sh.ok) + '</button></div>';
+    else if (sh.type === 'backupText') h += '<h2>' + (sh.mode === 'export' ? 'انسخ النسخة الاحتياطية' : 'الصق النسخة الاحتياطية') + '</h2><p class="muted small" style="margin:0">' +
+      (sh.mode === 'export' ? 'انسخ النص كامل واحفظه في ملاحظاتك. لما تبي ترجعه، الصقه من «استرجع نسخة».' : 'الصق النص اللي نسخته من قبل.') + '</p>' +
+      '<textarea class="input copybox" id="bkText"' + (sh.mode === 'export' ? ' readonly' : '') + ' aria-label="النسخة الاحتياطية">' + esc(sh.text || '') + '</textarea>' +
+      '<div class="acts"><button type="button" class="btn btn-ghost" data-act="closeSheet">إغلاق</button>' + (sh.mode === 'export' ? '<button type="button" class="btn btn-primary" data-act="copyBackup">' + svg('copy', 18) + 'انسخ</button>' : '<button type="button" class="btn btn-primary" data-act="pasteBackup">استرجع</button>') + '</div>';
+    return h + '</div></div>';
+  }
+  function sheetTitle(sh) {
+    return { add: 'أضف للمطبخ', ing: 'المكون', filters: 'الفلاتر', fin: 'بعد الطبخ', confirm: sh.title || 'تأكيد', backupText: 'النسخة الاحتياطية' }[sh.type] || '';
+  }
+
+  function addSheet(sh) {
+    return '<h2>' + (sh.mode === 'basic' ? 'أضف للأساسيات' : 'أضف للمطبخ') + '</h2><label class="search" style="box-shadow:none;background:var(--bg)">' + svg('search', 20) +
+      '<input id="addq" type="search" enterkeyhint="done" autocomplete="off" placeholder="اكتب مكون… مثلاً طماطم" aria-label="ابحث عن مكون" value="' + esc(sh.q || '') + '"></label><div id="addres">' + addRes(sh) + '</div>' +
+      '<button type="button" class="btn btn-primary btn-block" data-act="closeSheet">تم</button>';
+  }
+  function addRes(sh) {
+    var q = (sh.q || '').trim();
+    var isOn = function (id) { return sh.mode === 'basic' ? S.basics.indexOf(id) >= 0 : !!S.pantry[id]; };
+    if (sh.newName) {
+      return '<p class="muted small" style="margin:0">«' + esc(sh.newName) + '» وش نوعه؟</p><div class="wrap">' + D.CATS.map(function (c) {
+        return '<button type="button" class="ing pick" data-act="newIngCat" data-v="' + c.id + '">' + c.name + '</button>';
+      }).join('') + '</div>';
+    }
+    if (!q) {
+      return D.CATS.map(function (c) {
+        var list = L.allIngs(S).filter(function (x) { return x.cat === c.id && (sh.mode === 'basic' || S.basics.indexOf(x.id) < 0); });
+        if (!list.length) return '';
+        return '<div class="field" style="margin-top:4px"><span class="lbl">' + c.name + '</span><div class="wrap">' + list.map(function (x) {
+          var on = isOn(x.id);
+          return '<button type="button" class="ing pick' + (on ? ' on' : '') + '" data-act="toggleIng" data-id="' + x.id + '" aria-pressed="' + on + '">' + esc(x.name) + '</button>';
+        }).join('') + '</div></div>';
+      }).join('');
+    }
+    var f = L.findIng(S, q);
+    var h = '<div class="res">';
+    var row = function (x) {
+      var on = isOn(x.id);
+      return '<button type="button" data-act="toggleIng" data-id="' + x.id + '" aria-pressed="' + on + '"><span>' + esc(x.name) + ' <small>· ' + catName(x.cat) + '</small></span>' +
+        (on ? '<span class="pill soft sel">' + svg('check', 14) + (sh.mode === 'basic' ? 'من الأساسيات' : 'عندك') + '</span>' : svg('plus', 18)) + '</button>';
+    };
+    f.matches.forEach(function (x) { h += row(x); });
+    if (!f.matches.length && f.fuzzy.length) {
+      h += '<h3>تقصد؟</h3>';
+      f.fuzzy.forEach(function (x) { h += row(x); });
+    }
+    if (!f.exact && sh.mode !== 'basic') {
+      h += '<button type="button" data-act="newIng"><span>أضف «' + esc(q) + '» كمكون جديد</span>' + svg('plus', 18) + '</button>';
+    }
+    return h + '</div>';
+  }
+
+  function ingSheet(sh) {
+    var id = sh.id, p = S.pantry[id], x = L.ing(S, id);
+    if (!p || !x) return '<h2>هذا المكون ما عاد موجود</h2>';
+    var dl = L.daysLeft(S, id, Date.now());
+    var h = '<h2>' + esc(x.name) + ' <small class="muted small">· ' + catName(x.cat) + '</small></h2>';
+    h += '<span class="lbl">الحالة</span><div class="seg">' + segBtn('setSt', 'have', 'عندي', p.status) + segBtn('setSt', 'low', 'قارب يخلص', p.status) + '</div>';
+    h += '<span class="lbl">يخرب بعد</span>';
+    if (p.expiresAt) {
+      h += '<div class="persons"><span class="txt"><b>' + (dl < 0 ? 'انتهت صلاحيته' : L.daysText(dl)) + '</b><small>نقدّم لك الأطباق اللي تستخدمه قبل ما يخرب</small></span><span class="stepper">' +
+        '<button type="button" data-act="exp" data-v="-1" aria-label="يوم أقل">' + svg('minus', 18) + '</button><output class="num">' + Math.max(dl, 0) + '</output>' +
+        '<button type="button" class="plus" data-act="exp" data-v="1" aria-label="يوم زيادة">' + svg('plus', 18) + '</button></span></div><button type="button" class="link" data-act="expOff" style="align-self:flex-start">ما يخرب بسرعة · بدون تاريخ</button>';
+    } else {
+      h += '<div class="note"><span>بدون تاريخ صلاحية</span><button type="button" class="link" data-act="expOn">حدد كم يوم</button></div>';
+    }
+    h += '<div class="acts"><button type="button" class="btn btn-ghost" data-act="gone2shop">' + svg('cart', 18) + 'خلص · للقائمة</button><button type="button" class="btn btn-danger" data-act="rmIng">' + svg('trash', 18) + 'شيله</button></div>';
+    return h;
+  }
+
+  function filterSheet() {
+    var f = ui.f;
+    var opt = function (act, v, label, on) { return '<button type="button" class="ing pick' + (on ? ' on' : '') + '" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + on + '">' + label + '</button>'; };
+    var h = '<h2>الفلاتر</h2>';
+    h += '<span class="lbl">الوجبة</span><div class="wrap">' + opt('meal', '', 'الكل', !f.meal) + D.MEALS.map(function (m) { return opt('meal', m.id, m.name, f.meal === m.id); }).join('') + '</div>';
+    h += '<span class="lbl">الوقت</span><div class="wrap">' + opt('time', '', 'أي وقت', !f.maxTime) + [15, 30, 60].map(function (t) { return opt('time', t, 'أقل من ' + t + ' د', f.maxTime === t); }).join('') + '</div>';
+    h += '<span class="lbl">الصعوبة</span><div class="wrap">' + opt('easy', '', 'الكل', !f.diff) + [1, 2, 3].map(function (d) { return opt('easy', d, D.DIFFS[d], f.diff === d); }).join('') + '</div>';
+    h += '<span class="lbl">المطبخ</span><div class="wrap">' + opt('cuisine', '', 'الكل', !f.cuisine) + D.CUISINES.map(function (c) { return opt('cuisine', c.id, c.name, f.cuisine === c.id); }).join('') + '</div>';
+    h += '<span class="lbl">عدد الأشخاص</span><div class="persons"><span class="txt"><b>الوصفات تفتح على</b><small>والكميات تتغير على حسبه</small></span><span class="stepper"><button type="button" data-act="defP" data-v="-1" aria-label="نقّص">' + svg('minus', 18) + '</button><output class="num">' + S.settings.persons + '</output><button type="button" class="plus" data-act="defP" data-v="1" aria-label="زِد">' + svg('plus', 18) + '</button></span></div>';
+    h += '<div class="acts"><button type="button" class="btn btn-ghost" data-act="clearFilters">امسح الفلاتر</button><button type="button" class="btn btn-primary" data-act="closeSheet">اعرض النتائج</button></div>';
+    return h;
+  }
+
+  function finSheet(sh) {
+    var r = L.recipe(S, sh.rid);
+    var ids = r.ing.map(function (x) { return x.id; }).filter(function (id) { return S.pantry[id]; });
+    var h = '<h2>صحتين وعافية! وش خلص من المكونات؟</h2><p class="muted small" style="margin:0">عشان يبقى مطبخك محدّث. اللي تختار «خلص» ينشال من المطبخ.</p>';
+    if (!ids.length) h += '<p class="muted" style="margin:0">ما فيه مكونات تحتاج تحديث.</p>';
+    ids.forEach(function (id) {
+      var c = sh.choices[id] || 'keep';
+      h += '<div class="fin-row"><span class="nm">' + esc(L.ingName(S, id)) + '</span><div class="seg">' + segBtn('finCh', 'keep', 'باقي', c).replace('data-v="keep"', 'data-v="keep" data-id="' + id + '"') +
+        segBtn('finCh', 'low', 'قارب يخلص', c).replace('data-v="low"', 'data-v="low" data-id="' + id + '"') + segBtn('finCh', 'gone', 'خلص', c).replace('data-v="gone"', 'data-v="gone" data-id="' + id + '"') + '</div></div>';
+    });
+    var anyGone = ids.some(function (id) { return sh.choices[id] === 'gone'; });
+    if (anyGone) h += '<label class="ed-sub" style="margin:0"><input type="checkbox" id="finShop" data-act="finShop"' + (sh.addShop ? ' checked' : '') + '> أضف اللي خلص لقائمة المشتريات</label>';
+    h += '<div class="acts"><button type="button" class="btn btn-ghost" data-act="finSkip">ما تغير شي</button><button type="button" class="btn btn-primary" data-act="finSave">احفظ</button></div>';
+    return h;
+  }
+
+  /* ===== وضع الطبخ ===== */
+  var C = 2 * Math.PI * 52;
+  function cookHtml() {
+    var c = ui.cook, r = L.recipe(S, c.rid);
+    var st = r.steps[c.i], factor = c.persons / r.serves;
+    var h = '<div class="cook" role="dialog" aria-modal="true" aria-label="وضع الطبخ: ' + esc(r.name) + '"><div class="cook-in">';
+    h += '<div class="cook-top"><button type="button" class="cbtn" data-act="cookEnd">' + svg('x', 18) + 'إنهاء</button><span class="ttl">' + esc(r.name) + ' · ' + cnt(c.persons, 'person') + '</span>' +
+      (voiceSupported() ? '<button type="button" class="cbtn mic" data-act="voice" aria-pressed="' + !!c.voice + '" aria-label="الأوامر الصوتية">' + svg('mic', 18) + '</button>' : '<span style="width:44px"></span>') + '</div>';
+    h += '<div class="prog" aria-hidden="true">' + r.steps.map(function (_, i) { return '<span class="' + (i < c.i ? 'done' : i === c.i ? 'cur' : '') + '"></span>'; }).join('') + '</div>';
+    var chips = st.ing.map(function (id) {
+      var x = r.ing.filter(function (y) { return y.id === id; })[0];
+      return x ? '<span>' + esc(L.ingName(S, id)) + ' · ' + qtyHtml(L.scaleOne(S, x, factor)) + '</span>' : '';
+    }).join('');
+    var isLast = c.i === r.steps.length - 1;
+    h += '<button type="button" class="cook-step" data-act="cookNext" aria-label="الخطوة التالية"><span class="cnt">الخطوة <span class="num">' + (c.i + 1) + '</span> من <span class="num">' + r.steps.length + '</span></span>' +
+      '<p>' + esc(st.t) + '</p>' + (chips ? '<span class="cchips">' + chips + '</span>' : '') +
+      '<span class="hint">' + (isLast ? 'هذي آخر خطوة' : 'المس أي مكان هنا للخطوة التالية') + (c.voice ? ' · أو قل «التالي»' : '') + '</span></button>';
+    var others = Object.keys(c.timers).filter(function (k) { return +k !== c.i && (c.timers[k].endAt || c.timers[k].ring); });
+    if (others.length) {
+      h += '<div class="mini-timers">' + others.map(function (k) {
+        return '<button type="button" data-act="cookGo" data-v="' + k + '" id="mt-' + k + '">' + svg('clock', 14) + ' خطوة ' + (+k + 1) + ' · <span>' + fmtSec(timerLeft(c.timers[k])) + '</span></button>';
+      }).join('') + '</div>';
+    }
+    if (st.min) {
+      var t = c.timers[c.i] || { dur: st.min * 60, left: st.min * 60, endAt: null, ring: false };
+      var left = timerLeft(t), frac = t.dur ? left / t.dur : 0;
+      h += '<div class="timer' + (t.ring ? ' ding' : '') + '" id="tmr"><div class="ring"><svg width="184" height="184" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--cook-track)" stroke-width="7"/>' +
+        '<circle id="tArc" cx="60" cy="60" r="52" fill="none" stroke="var(--saffron)" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - frac)).toFixed(1) + '" transform="rotate(-90 60 60)"/></svg>' +
+        '<div class="face" role="timer" aria-live="off"><span class="t" id="tT">' + fmtSec(left) + '</span><span class="l">' + (t.ring ? 'خلص الوقت!' : 'من ' + fmtSec(t.dur)) + '</span></div></div>' +
+        '<div class="tctl"><button type="button" class="round" data-act="tReset" aria-label="إعادة المؤقت">' + svg('reset', 22) + '</button>' +
+        (t.ring ? '<button type="button" class="round big" data-act="tAck" aria-label="أوقف التنبيه">' + svg('check', 28) + '</button>' :
+          '<button type="button" class="round big" data-act="tToggle" aria-label="' + (t.endAt ? 'إيقاف مؤقت' : 'شغّل المؤقت') + '">' + svg(t.endAt ? 'pause' : 'play', 28) + '</button>') +
+        '<button type="button" class="round" data-act="tAdd" aria-label="زِد دقيقة"><span class="num">+1</span></button></div></div>';
+    }
+    h += '<p class="awake" id="awake">' + svg('phone', 16) + awakeText() + '</p>';
+    h += '<div class="cook-nav"><button type="button" class="prev" data-act="cookPrev"' + (c.i === 0 ? ' disabled style="opacity:.45"' : '') + '>' + svg('chevR', 18) + 'السابق</button>' +
+      '<button type="button" class="next" data-act="cookNext">' + (isLast ? svg('check', 18) + 'خلصت الطبخ' : 'الخطوة التالية' + svg('chevL', 18)) + '</button></div>';
+    h += '</div></div>';
+    return h;
+  }
+  function fmtSec(s) {
+    s = Math.max(0, Math.round(s));
+    var m = Math.floor(s / 60), r = s % 60;
+    if (m >= 60) return Math.floor(m / 60) + ':' + pad(m % 60) + ':' + pad(r);
+    return pad(m) + ':' + pad(r);
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function timerLeft(t) { return t.endAt ? Math.max(0, (t.endAt - Date.now()) / 1000) : t.left; }
+  function curTimer(create) {
+    var c = ui.cook, r = L.recipe(S, c.rid), st = r.steps[c.i];
+    if (!st.min) return null;
+    if (!c.timers[c.i] && create) c.timers[c.i] = { dur: st.min * 60, left: st.min * 60, endAt: null, ring: false };
+    return c.timers[c.i] || null;
+  }
+  function startTimer() { var t = curTimer(true); if (t && !t.endAt && !t.ring) { if (t.left <= 0) t.left = t.dur; t.endAt = Date.now() + t.left * 1000; } }
+  function pauseTimer() { var t = curTimer(false); if (t && t.endAt) { t.left = timerLeft(t); t.endAt = null; } }
+
+  var wake = null, wakeOk = null;
+  function awakeText() {
+    if (wakeOk) return 'الشاشة تبقى شغالة طول ما أنت في وضع الطبخ';
+    if (wakeOk === false) return 'جهازك ما سمح يخلي الشاشة شغالة. طوّل «القفل التلقائي» من إعدادات الجوال وقت الطبخ.';
+    return 'نحاول نخلي الشاشة شغالة…';
+  }
+  function requestWake() {
+    if (!('wakeLock' in navigator)) { wakeOk = false; updAwake(); return; }
+    try {
+      navigator.wakeLock.request('screen').then(function (w) {
+        wake = w; wakeOk = true; updAwake();
+        w.addEventListener('release', function () { if (wake === w) { wake = null; } });
+      }).catch(function () { wakeOk = false; updAwake(); });
+    } catch (e) { wakeOk = false; updAwake(); }
+  }
+  function releaseWake() { try { if (wake) wake.release(); } catch (e) { /* */ } wake = null; wakeOk = null; }
+  function updAwake() { var el = $('#awake'); if (el) el.innerHTML = svg('phone', 16) + awakeText(); }
+
+  /* الصوت: تنبيه المؤقت */
+  var actx = null, alarmTimer = null;
+  function unlockAudio() {
+    try {
+      var A = window.AudioContext || window.webkitAudioContext;
+      if (!A) return;
+      if (!actx) actx = new A();
+      if (actx.state === 'suspended') actx.resume();
+      var o = actx.createOscillator(), g = actx.createGain();
+      g.gain.value = 0.0001; o.connect(g); g.connect(actx.destination); o.start(); o.stop(actx.currentTime + 0.02);
+    } catch (e) { /* */ }
+  }
+  function beep() {
+    if (!actx) return;
+    try {
+      [0, 0.28, 0.56].forEach(function (d) {
+        var o = actx.createOscillator(), g = actx.createGain(), t0 = actx.currentTime + d;
+        o.type = 'sine'; o.frequency.value = 880;
+        g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(0.5, t0 + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.22);
+        o.connect(g); g.connect(actx.destination); o.start(t0); o.stop(t0 + 0.25);
+      });
+    } catch (e) { /* */ }
+    try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) { /* */ }
+  }
+  function syncAlarm() {
+    var any = ui.cook && Object.keys(ui.cook.timers).some(function (k) { return ui.cook.timers[k].ring; });
+    if (any && !alarmTimer) { beep(); alarmTimer = setInterval(beep, 1600); }
+    if (!any && alarmTimer) { clearInterval(alarmTimer); alarmTimer = null; }
+  }
+
+  function tick() {
+    var c = ui.cook;
+    if (!c) return;
+    var changed = false;
+    Object.keys(c.timers).forEach(function (k) {
+      var t = c.timers[k];
+      if (t.endAt && Date.now() >= t.endAt) { t.endAt = null; t.left = 0; t.ring = true; changed = true; }
+    });
+    if (changed) { syncAlarm(); renderCook(); return; }
+    var t = c.timers[c.i];
+    if (t && t.endAt) {
+      var left = timerLeft(t), el = $('#tT'), arc = $('#tArc');
+      if (el) el.textContent = fmtSec(left);
+      if (arc) arc.setAttribute('stroke-dashoffset', (C * (1 - left / t.dur)).toFixed(1));
+    }
+    Object.keys(c.timers).forEach(function (k) {
+      var m = $('#mt-' + k + ' span');
+      if (m) m.textContent = fmtSec(timerLeft(c.timers[k]));
+    });
+  }
+
+  /* الأوامر الصوتية */
+  var rec = null;
+  function voiceSupported() { return !!(window.SpeechRecognition || window.webkitSpeechRecognition); }
+  function startVoice() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR || !ui.cook) return;
+    try {
+      rec = new SR();
+      rec.lang = 'ar-SA'; rec.continuous = true; rec.interimResults = false;
+      rec.onresult = function (e) {
+        var txt = L.norm(e.results[e.results.length - 1][0].transcript);
+        if (/التالي|بعده|بعدها|كمل|التاليه/.test(txt)) cookMove(1);
+        else if (/السابق|ارجع|رجوع|قبل/.test(txt)) cookMove(-1);
+        else if (/وقف|ايقاف|اوقف|تمام/.test(txt)) { ackAll(); pauseTimer(); renderCook(); }
+        else if (/شغل|ابدا|مؤقت|موقت/.test(txt)) { startTimer(); renderCook(); }
+      };
+      rec.onerror = function (e) {
+        if (e.error === 'not-allowed' || e.error === 'service-not-allowed' || e.error === 'audio-capture') {
+          stopVoice(); if (ui.cook) { ui.cook.voice = false; renderCook(); }
+          toast('ما قدرت أشغّل المايك. تقدر تكمل باللمس.');
+        }
+      };
+      rec.onend = function () { if (ui.cook && ui.cook.voice) { setTimeout(function () { try { rec && rec.start(); } catch (e) { /* */ } }, 300); } };
+      rec.start();
+    } catch (e) { rec = null; if (ui.cook) ui.cook.voice = false; toast('الأوامر الصوتية ما تشتغل على هذا الجهاز.'); }
+  }
+  function stopVoice() { var r = rec; rec = null; try { if (r) { r.onend = null; r.stop(); } } catch (e) { /* */ } }
+
+  function ackAll() {
+    if (!ui.cook) return;
+    Object.keys(ui.cook.timers).forEach(function (k) {
+      var t = ui.cook.timers[k];
+      if (t.ring) { t.ring = false; t.left = 0; }
+    });
+    syncAlarm();
+  }
+  function cookMove(d) {
+    var c = ui.cook; if (!c) return;
+    var r = L.recipe(S, c.rid);
+    var curT = c.timers[c.i];
+    if (curT && curT.ring) { ackAll(); }
+    if (d > 0 && c.i === r.steps.length - 1) { finishCook(); return; }
+    c.i = Math.max(0, Math.min(r.steps.length - 1, c.i + d));
+    renderCook();
+    var step = $('.cook-step'); if (step) step.scrollTop = 0;
+  }
+  function openCook(rid, persons) {
+    unlockAudio();
+    ui.cook = { rid: rid, persons: persons, i: 0, timers: {}, voice: !!S.settings.voice && voiceSupported() };
+    wakeOk = null;
+    requestWake();
+    renderCook();
+    if (ui.cook.voice) startVoice();
+  }
+  function closeCook() {
+    stopVoice(); releaseWake();
+    ui.cook = null; syncAlarm();
+    renderCook();
+  }
+  function finishCook() {
+    var c = ui.cook;
+    closeCook();
+    ui.sheet = { type: 'fin', rid: c.rid, choices: {}, addShop: true };
+    renderSheet();
+  }
+
+  /* ===== الرسم ===== */
+  function renderMain() {
+    var el = $('#main');
+    var scr = $('#scr'), top = scr ? scr.scrollTop : 0;
+    var html = ui.tab === 'home' ? homeHtml() : ui.tab === 'pantry' ? pantryHtml() : ui.tab === 'shop' ? shopHtml() : mineHtml();
+    el.innerHTML = '<main class="screen" id="scr">' + html + '</main>' + nav();
+    var ns = $('#scr'); if (ns) ns.scrollTop = top;
+  }
+  function renderOv() {
+    var el = $('#ov'), o = ui.overlay;
+    var b = $('#rbody') || $('#ebody') || $('.form-body', el), top = b ? b.scrollTop : 0;
+    if (!o) { el.innerHTML = ''; return; }
+    el.innerHTML = o.type === 'recipe' ? recipePage(o) : o.type === 'editor' ? editorPage(o) : settingsPage();
+    var nb = $('#rbody') || $('#ebody') || $('.form-body', el); if (nb && o.keepScroll) nb.scrollTop = top;
+    o.keepScroll = true;
+  }
+  function renderCook() { $('#ck').innerHTML = ui.cook ? cookHtml() : ''; }
+  function renderSheet() {
+    var el = $('#sh');
+    var s = $('.sheet', el), top = s ? s.scrollTop : 0;
+    el.innerHTML = ui.sheet ? sheetHtml(ui.sheet) : '';
+    var ns = $('.sheet', el); if (ns) ns.scrollTop = top;
+  }
+  function refresh() { renderMain(); renderOv(); renderCook(); renderSheet(); }
+  function changed() { save(); refresh(); }
+
+  function openRecipe(id) {
+    ui.overlay = { type: 'recipe', id: id, persons: S.settings.persons, tab: 'ing' };
+    renderOv();
+  }
+  function closeOverlay() { ui.overlay = null; renderOv(); renderMain(); }
+  function closeSheet() { ui.sheet = null; renderSheet(); }
+  function openConfirm(title, body, ok, danger, fn) { ui.sheet = { type: 'confirm', title: title, body: body, ok: ok, danger: danger, fn: fn }; renderSheet(); }
+
+  function addMissing(rid) {
+    var r = L.recipe(S, rid), a = L.analyze(S, r, Date.now());
+    if (!a.missingReq.length) return;
+    var snap = snapshot();
+    a.missingReq.forEach(function (id) { L.addShopping(S, { ingId: id, from: r.name }); });
+    changed();
+    toast('انضاف للقائمة: ' + names(a.missingReq), function () { restore(snap); });
+  }
+
+  /* ===== النسخ الاحتياطي ===== */
+  function markBackup() { S.lastBackup = Date.now(); changed(); }
+  function exportBackup() {
+    var txt = L.exportData(S);
+    var d = new Date(), name = 'wash-atbukh-' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + '.json';
+    if (FRAMED) { ui.sheet = { type: 'backupText', mode: 'export', text: txt }; renderSheet(); return; }
+    var file = null;
+    try { file = new File([txt], name, { type: 'application/json' }); } catch (e) { file = null; }
+    if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+      navigator.share({ files: [file], title: 'نسخة وش أطبخ؟' }).then(function () { markBackup(); toast('انحفظت النسخة'); })
+        .catch(function (err) { if (!err || err.name !== 'AbortError') { ui.sheet = { type: 'backupText', mode: 'export', text: txt }; renderSheet(); } });
+      return;
+    }
+    try {
+      var url = URL.createObjectURL(new Blob([txt], { type: 'application/json' }));
+      var a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 5000);
+      markBackup(); toast('انحفظت النسخة باسم ' + name);
+    } catch (e) { ui.sheet = { type: 'backupText', mode: 'export', text: txt }; renderSheet(); }
+  }
+  function askImport(text) {
+    var st;
+    try { st = L.importData(text); } catch (e) { toast('هذا الملف مو نسخة من وش أطبخ؟'); return; }
+    openConfirm('تسترجع هذي النسخة؟', 'بتنحط بدال بياناتك الحالية: ' + Object.keys(st.pantry).length + ' مكون، ' + st.myRecipes.length + ' وصفة لك، ' + st.history.length + ' مرة طبخ.', 'استرجع', false, function () {
+      var snap = snapshot();
+      S = st; S.demo = false; save(); ui.overlay = null; ui.sheet = null; refresh();
+      toast('رجعت النسخة', function () { restore(snap); });
+    });
+  }
+
+  /* ===== الأوامر ===== */
+  function act(a, el, e) {
+    var id = el.getAttribute('data-id'), v = el.getAttribute('data-v');
+    var snap;
+    switch (a) {
+      case 'tab': ui.tab = v; ui.showAll = false; renderMain(); var sc = $('#scr'); if (sc) sc.scrollTop = 0; break;
+      case 'undo': if (toast.undo) { var u = toast.undo; toast.undo = null; $('#toast').innerHTML = ''; u(); } break;
+      case 'settings': ui.overlay = { type: 'settings' }; renderOv(); break;
+      case 'close': closeOverlay(); break;
+      case 'backdrop': if (e.target === el) closeSheet(); break;
+      case 'closeSheet':
+        closeSheet(); renderMain(); renderOv();
+        break;
+      case 'confirmOk': var fn = ui.sheet.fn; closeSheet(); fn(); break;
+      case 'hideInstall': S.installTipOff = true; changed(); break;
+
+      /* الفلاتر */
+      case 'meal': setF('meal', v || null); break;
+      case 'time': setF('maxTime', v ? +v : null); break;
+      case 'easy': setF('diff', v ? +v : null); break;
+      case 'cuisine': setF('cuisine', v || null); break;
+      case 'useExp': ui.f.useExpiring = !ui.f.useExpiring; afterFilter(); break;
+      case 'clearFilters': ui.f = { meal: null, maxTime: null, diff: null, cuisine: null, q: '', useExpiring: false }; if (ui.sheet && ui.sheet.type === 'filters') closeSheet(); renderMain(); break;
+      case 'filters': ui.sheet = { type: 'filters' }; renderSheet(); break;
+      case 'showAll': ui.showAll = !ui.showAll; $('#results').innerHTML = resultsHtml(); break;
+      case 'defP': S.settings.persons = Math.max(1, Math.min(30, S.settings.persons + (+v))); save(); renderSheet(); renderOv(); break;
+
+      /* الوصفات */
+      case 'open': openRecipe(id); break;
+      case 'fav': if (S.favs[id]) delete S.favs[id]; else S.favs[id] = Date.now(); save(); renderOv(); toast(S.favs[id] ? 'انضافت للمفضلة' : 'انشالت من المفضلة'); break;
+      case 'pers': ui.overlay.persons = Math.max(1, Math.min(30, ui.overlay.persons + (+v))); renderOv(); break;
+      case 'rtab': ui.overlay.tab = v; renderOv(); break;
+      case 'addmiss': addMissing(id); break;
+      case 'cook': openCook(ui.overlay.id, ui.overlay.persons); break;
+
+      /* وضع الطبخ */
+      case 'cookNext': cookMove(1); break;
+      case 'cookPrev': cookMove(-1); break;
+      case 'cookGo': ui.cook.i = +v; renderCook(); break;
+      case 'cookEnd': ackAll(); closeCook(); break;
+      case 'tToggle': unlockAudio(); var tt = curTimer(true); if (tt.endAt) pauseTimer(); else startTimer(); renderCook(); break;
+      case 'tReset': var tr = curTimer(true); tr.endAt = null; tr.left = tr.dur; tr.ring = false; syncAlarm(); renderCook(); break;
+      case 'tAdd': var ta = curTimer(true); if (ta.ring) { ta.ring = false; ta.left = 0; syncAlarm(); } ta.dur += 60; if (ta.endAt) ta.endAt += 60000; else ta.left += 60; renderCook(); break;
+      case 'tAck': ackAll(); renderCook(); break;
+      case 'voice':
+        ui.cook.voice = !ui.cook.voice; S.settings.voice = ui.cook.voice; save();
+        if (ui.cook.voice) startVoice(); else stopVoice();
+        renderCook(); break;
+      case 'voicePref': S.settings.voice = !S.settings.voice; save(); renderOv(); break;
+
+      /* بعد الطبخ */
+      case 'finCh': ui.sheet.choices[id] = v; renderSheet(); break;
+      case 'finShop': ui.sheet.addShop = el.checked; break;
+      case 'finSkip': case 'finSave':
+        var sh = ui.sheet, r = L.recipe(S, sh.rid);
+        var used = a === 'finSkip' ? [] : Object.keys(sh.choices).filter(function (k) { return sh.choices[k] !== 'keep'; }).map(function (k) { return { id: k, action: sh.choices[k] }; });
+        L.logCooked(S, sh.rid, used);
+        if (a === 'finSave' && sh.addShop) used.filter(function (u) { return u.action === 'gone'; }).forEach(function (u) { L.addShopping(S, { ingId: u.id }); });
+        ui.sheet = null; ui.overlay = null; changed();
+        toast('انسجلت «' + r.name + '» في وش طبخنا');
+        break;
+
+      /* المطبخ */
+      case 'pseg': ui.pantrySeg = v; renderMain(); break;
+      case 'addSheet': ui.sheet = { type: 'add', q: '' }; renderSheet(); focusLater('#addq'); break;
+      case 'addBasic': ui.sheet = { type: 'add', q: '', mode: 'basic' }; renderSheet(); focusLater('#addq'); break;
+      case 'toggleIng':
+        if (ui.sheet.mode === 'basic') {
+          var bi = S.basics.indexOf(id);
+          if (bi >= 0) S.basics.splice(bi, 1); else S.basics.push(id);
+        } else if (S.pantry[id]) L.removePantry(S, id);
+        else L.setPantry(S, id, 'have');
+        save(); $('#addres').innerHTML = addRes(ui.sheet);
+        break;
+      case 'newIng': ui.sheet.newName = (ui.sheet.q || '').trim(); $('#addres').innerHTML = addRes(ui.sheet); break;
+      case 'newIngCat':
+        var ni = L.addCustomIng(S, ui.sheet.newName, v);
+        L.setPantry(S, ni.id, 'have');
+        ui.sheet.newName = null; ui.sheet.q = ''; save(); renderSheet(); toast('انضاف «' + ni.name + '» لمطبخك'); focusLater('#addq');
+        break;
+      case 'ing': ui.sheet = { type: 'ing', id: id }; renderSheet(); break;
+      case 'setSt': L.setPantry(S, ui.sheet.id, v); changed(); break;
+      case 'exp':
+        var cur = Math.max(0, L.daysLeft(S, ui.sheet.id, Date.now()));
+        L.setExpiry(S, ui.sheet.id, Math.max(0, cur + (+v))); changed(); break;
+      case 'expOff': L.setExpiry(S, ui.sheet.id, null); changed(); break;
+      case 'expOn': var inf = L.ing(S, ui.sheet.id); L.setExpiry(S, ui.sheet.id, inf && inf.perish ? inf.perish : 3); changed(); break;
+      case 'rmIng':
+        snap = snapshot(); var rn = L.ingName(S, ui.sheet.id);
+        L.removePantry(S, ui.sheet.id); ui.sheet = null; changed();
+        toast('انشال «' + rn + '» من مطبخك', function () { restore(snap); }); break;
+      case 'gone2shop':
+        snap = snapshot(); var gid = ui.sheet.id;
+        L.removePantry(S, gid); L.addShopping(S, { ingId: gid }); ui.sheet = null; changed();
+        toast('«' + L.ingName(S, gid) + '» راح للقائمة', function () { restore(snap); }); break;
+      case 'clearDemo':
+        snap = snapshot();
+        S.pantry = {}; S.demo = false; ui.overlay = null; save();
+        ui.tab = 'pantry'; ui.sheet = { type: 'add', q: '' }; refresh();
+        toast('انمسح المطبخ التجريبي', function () { restore(snap); });
+        break;
+      case 'rmBasic': S.basics.splice(S.basics.indexOf(id), 1); changed(); break;
+
+      /* المشتريات */
+      case 'delShop':
+        e.preventDefault();
+        snap = snapshot(); S.shopping = S.shopping.filter(function (s) { return s.id !== id; }); changed();
+        toast('انشال من القائمة', function () { restore(snap); }); break;
+      case 'clearDone':
+        snap = snapshot(); L.clearDone(S); changed(); toast('انمسح المشطوب', function () { restore(snap); }); break;
+
+      /* وصفاتي */
+      case 'mseg': ui.mineSeg = v; renderMain(); break;
+      case 'newRecipe': ui.overlay = { type: 'editor', draft: blankDraft() }; renderOv(); focusLater('#e-name'); break;
+      case 'editRecipe': ui.overlay = { type: 'editor', draft: draftFrom(L.recipe(S, id)) }; renderOv(); break;
+      case 'eMeal': var dm = ui.overlay.draft.meals, mi = dm.indexOf(v); if (mi >= 0) dm.splice(mi, 1); else dm.push(v); renderOv(); break;
+      case 'eAddIng': ui.overlay.draft.ing.push({ name: '', qty: '', unit: 'حبة', opt: false }); renderOv(); focusLater('#e-in-' + (ui.overlay.draft.ing.length - 1)); break;
+      case 'eDelIng': ui.overlay.draft.ing.splice(+v, 1); renderOv(); break;
+      case 'eAddStep': ui.overlay.draft.steps.push({ t: '', min: '' }); renderOv(); focusLater('#e-st-' + (ui.overlay.draft.steps.length - 1)); break;
+      case 'eDelStep': ui.overlay.draft.steps.splice(+v, 1); renderOv(); break;
+      case 'saveRecipe':
+        var res = saveDraft(ui.overlay.draft);
+        if (typeof res === 'string') { ui.overlay.draft.err = res; renderOv(); var eb = $('#ebody'); if (eb) eb.scrollTop = 0; break; }
+        save(); ui.mineSeg = 'mine'; ui.overlay = { type: 'recipe', id: res.id, persons: S.settings.persons, tab: 'ing' }; refresh(); toast('انحفظت «' + res.name + '»');
+        break;
+      case 'delRecipe':
+        var did = ui.overlay.draft.id;
+        openConfirm('تحذف هذي الوصفة؟', 'ما تقدر ترجعها بعد الحذف، إلا من نسخة احتياطية.', 'احذف', true, function () {
+          S.myRecipes = S.myRecipes.filter(function (x) { return x.id !== did; }); delete S.favs[did];
+          ui.overlay = null; changed(); toast('انحذفت الوصفة');
+        });
+        break;
+
+      /* الإعدادات */
+      case 'export': exportBackup(); break;
+      case 'importText': ui.sheet = { type: 'backupText', mode: 'import', text: '' }; renderSheet(); focusLater('#bkText'); break;
+      case 'pasteBackup': var t = $('#bkText').value; closeSheet(); askImport(t); break;
+      case 'copyBackup':
+        var ta2 = $('#bkText');
+        var done = function () { markBackup(); toast('انسخت. احفظها في ملاحظاتك.'); };
+        try {
+          navigator.clipboard.writeText(ta2.value).then(done, function () { ta2.focus(); ta2.select(); toast('النص محدد. انسخه يدوياً.'); });
+        } catch (err) { ta2.focus(); ta2.select(); toast('النص محدد. انسخه يدوياً.'); }
+        break;
+      case 'wipe':
+        openConfirm('تمسح كل شي؟', 'بينمسح المطبخ والقائمة ووصفاتك والسجل من هذا الجوال.', 'امسح كل شي', true, function () {
+          S = L.newState(); S.onboarded = true; ui.overlay = null; ui.tab = 'pantry'; save(); refresh(); toast('بدأت من جديد');
+        });
+        break;
+    }
+  }
+  function setF(k, val) {
+    if (!(ui.sheet && ui.sheet.type === 'filters') && ui.f[k] === val) ui.f[k] = null; else ui.f[k] = val;
+    afterFilter();
+  }
+  function afterFilter() {
+    ui.showAll = false;
+    if (ui.sheet && ui.sheet.type === 'filters') renderSheet();
+    renderMain();
+  }
+  function focusLater(sel) { setTimeout(function () { var el = $(sel); if (el) { try { el.focus({ preventScroll: true }); } catch (e) { el.focus(); } } }, 60); }
+
+  /* ===== الأحداث ===== */
+  function bind() {
+    document.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-act]');
+      if (!t || t.disabled) return;
+      if (t.tagName === 'INPUT') return;
+      act(t.getAttribute('data-act'), t, e);
+    });
+    document.addEventListener('change', function (e) {
+      var t = e.target;
+      if (t.matches('[data-act="toggleShop"]')) {
+        var it = L.toggleShopping(S, t.getAttribute('data-id'));
+        changed();
+        if (it && it.done) toast('«' + it.name + '» انضاف لمطبخك');
+        return;
+      }
+      if (t.matches('[data-act="finShop"]')) { ui.sheet.addShop = t.checked; return; }
+      if (t.id === 'impFile' && t.files && t.files[0]) {
+        var fr = new FileReader();
+        fr.onload = function () { askImport(String(fr.result)); };
+        fr.readAsText(t.files[0]);
+        t.value = '';
+        return;
+      }
+      if (t.hasAttribute('data-f') && ui.overlay && ui.overlay.draft) setDraftField(ui.overlay.draft, t.getAttribute('data-f'), t);
+    });
+    document.addEventListener('input', function (e) {
+      var t = e.target;
+      if (t.id === 'q') { ui.f.q = t.value; ui.showAll = false; var r = $('#results'); if (r) r.innerHTML = resultsHtml(); return; }
+      if (t.id === 'addq') { ui.sheet.q = t.value; ui.sheet.newName = null; $('#addres').innerHTML = addRes(ui.sheet); return; }
+      if (t.hasAttribute('data-f') && ui.overlay && ui.overlay.draft) setDraftField(ui.overlay.draft, t.getAttribute('data-f'), t);
+    });
+    document.addEventListener('submit', function (e) {
+      if (e.target.id !== 'shopForm') return;
+      e.preventDefault();
+      var inp = $('#shopIn'), v = inp.value.trim();
+      if (!v) return;
+      var f = L.findIng(S, v);
+      L.addShopping(S, f.exact ? { ingId: f.exact.id } : { name: v });
+      changed();
+      focusLater('#shopIn');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (ui.sheet) closeSheet();
+      else if (ui.cook) { ackAll(); closeCook(); }
+      else if (ui.overlay) closeOverlay();
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible' && ui.cook) { requestWake(); tick(); renderCook(); }
+    });
+    setInterval(tick, 250);
+  }
+
+  function registerSW() {
+    if (FRAMED || !('serviceWorker' in navigator) || location.protocol !== 'https:' && location.hostname !== 'localhost') return;
+    try {
+      navigator.serviceWorker.register('sw.js').then(function (reg) {
+        reg.addEventListener('updatefound', function () {
+          var nw = reg.installing;
+          if (!nw) return;
+          nw.addEventListener('statechange', function () {
+            if (nw.state === 'installed' && navigator.serviceWorker.controller) toast('نزل تحديث جديد. افتح التطبيق مرة ثانية عشان يشتغل.');
+          });
+        });
+      }).catch(function () { /* */ });
+      if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () { /* */ });
+    } catch (e) { /* */ }
+  }
+
+  function start() {
+    load();
+    var app = document.getElementById('app');
+    app.innerHTML = '<div id="main" style="display:contents"></div><div id="ov"></div><div id="ck"></div><div id="sh"></div><div id="toast" aria-live="polite"></div>';
+    bind();
+    refresh();
+    registerSW();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+</script>
+
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})})}
+</script>
+</body></html>
