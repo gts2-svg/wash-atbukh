@@ -1610,7 +1610,8 @@ var Logic = (function () {
     h += '<section class="set-sec"><h2>النسخة الاحتياطية</h2><p>كل بياناتك محفوظة على هذا الجوال بس. احفظ نسخة بين فترة وفترة عشان ما تضيع لو حذفت التطبيق أو غيّرت الجوال.</p><p>آخر نسخة: ' + lb + '</p>' +
       '<div class="set-row" style="justify-content:flex-start;flex-wrap:wrap"><button type="button" class="btn btn-primary" data-act="export">' + svg('share', 18) + 'احفظ نسخة</button>' +
       (FRAMED ? '<button type="button" class="btn btn-ghost" data-act="importText">' + svg('upload', 18) + 'استرجع نسخة</button>' :
-        '<label class="btn btn-ghost" for="impFile">' + svg('upload', 18) + 'استرجع نسخة</label><input type="file" id="impFile" accept="application/json,.json" class="sr">') + '</div></section>';
+        '<label class="btn btn-ghost" for="impFile">' + svg('upload', 18) + 'استرجع من ملف</label><input type="file" id="impFile" accept="application/json,.json" class="sr">' +
+        '<button type="button" class="btn btn-ghost" data-act="importText">' + svg('copy', 18) + 'الصق نسخة</button>') + '</div></section>';
     var hasVoice = !!(window.SpeechRecognition || window.webkitSpeechRecognition);
     h += '<section class="set-sec"><h2>الأوامر الصوتية في وضع الطبخ</h2><div class="set-row"><p>' + (hasVoice ? 'قل «التالي» أو «السابق» أو «شغّل المؤقت». على الآيفون غالباً تحتاج إنترنت، واللمس يبقى شغال دايماً.' : 'جهازك ما يدعمها هنا. تقدر تلمس أي مكان في الشاشة عشان تنتقل للخطوة التالية.') + '</p>' +
       (hasVoice ? '<button type="button" class="switch" role="switch" aria-checked="' + !!S.settings.voice + '" aria-label="الأوامر الصوتية" data-act="voicePref"></button>' : '') + '</div></section>';
